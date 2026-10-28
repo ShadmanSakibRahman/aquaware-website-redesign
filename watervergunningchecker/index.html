@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watervergunningchecker | AquaWare</title>
+<meta name="description" content="De AquaWare Watervergunningchecker helpt waterschappen en bevoegde gezagen bestaande lozingsvergunningen sneller te analyseren, lozingseisen inzichtelijk te maken en actualisatiepunten te identificeren.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AquaWare">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:title" content="Watervergunningchecker | AquaWare">
+<meta property="og:description" content="Bestaande lozingsvergunningen sneller analyseren, lozingseisen inzichtelijk maken en mogelijke actualisatiepunten identificeren — gericht op de KRW.">
+<meta property="og:image" content="../assets/img/industrie-rivier-1600.ea9ea566.webp">
+<link rel="alternate" hreflang="nl" href="./">
+<link rel="alternate" hreflang="en" href="../en/watervergunningchecker/">
+<link rel="alternate" hreflang="x-default" href="./">
+<link rel="icon" type="image/png" href="../assets/img/favicon-64.afd489e6.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.f1bd775d.png">
+<link rel="preload" href="../assets/fonts/host-grotesk-latin.ce9c9db8.woff2" as="font" type="font/woff2" crossorigin>
+<style>:root{--ink:#10141b;--text:#343a45;--muted:#5c6370;--faint:#8a909b;--line:#dde1e7;--line-soft:#eceef2;--grey:#f3f5f8;--tint:#ebf0fc;--white:#fff;--blue:#1a3fd6;--blue-hover:#1533b4;--blue-tint:#eef2fd;--dash:#8ea7ef;--dark:#0c1427;--dark-tile:#151b2b;--on-dark:#f5f5f7;--on-dark-muted:#a1a1a6;--on-dark-accent:#8ea8ff;--on-dark-line:rgba(255, 255, 255, .12);--red:#c53030;--red-bg:#fdecec;--red-dot:#f16b6b;--amber:#9a6200;--amber-bg:#fff5e0;--amber-dot:#f3b545;--green:#1f7a3a;--green-bg:#e8f7ec;--green-dot:#5cc27a;--font:'Host Grotesk', 'Host Grotesk Fallback', system-ui, 'Segoe UI', sans-serif;--ui:'Geist', system-ui, sans-serif;--mono:'Geist Mono', ui-monospace, Menlo, monospace;--fs-hero:clamp(2.25rem, min(1.1rem + 2.9vw, .85rem + 4.5vh), 4.25rem);--fs-h2:clamp(1.875rem, min(1.1rem + 2.4vw, 1.2rem + 3.2vh), 3.25rem);--fs-h3:clamp(1.5rem, 1.3rem + .6vw, 1.875rem);--fs-h4:1.3125rem;--fs-sub:clamp(1.0625rem, 1rem + .3vw, 1.25rem);--fs-body:1.0625rem;--fs-small:.9375rem;--fs-caption:.8125rem;--fs-micro:.75rem;--container:1200px;--gutter:clamp(20px, 4vw, 40px);--band:clamp(56px, min(6.5vw, 11vh), 104px);--head-gap:clamp(40px, 4.5vw, 64px);--overlap:clamp(40px, 6vw, 88px);--r-tile:20px;--r-card:16px;--r-inner:10px;--r-sm:8px;--r-pill:980px;--sh-float:0 1px 2px rgba(16, 20, 27, .05), 0 12px 32px -8px rgba(16, 20, 27, .14);--sh-stage:0 30px 80px rgba(11, 15, 26, .28);--ease:cubic-bezier(.25, .1, .25, 1);--ease-out:cubic-bezier(.2, .8, .2, 1);--ease-out-expo:cubic-bezier(.16, 1, .3, 1);--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8h10M9 4l4 4-4 4'/%3E%3C/svg%3E");--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 6'%3E%3Cpath d='M0 3Q4.5 0 9 3T18 3' fill='none' stroke='%231a3fd6' stroke-width='1.5'/%3E%3C/svg%3E");--header-h:68px}@media (min-width:1600px){:root{--container:1320px;--fs-hero:clamp(2.25rem, min(1.1rem + 2.9vw, .85rem + 4.5vh), 4.5rem);--fs-h2:clamp(1.875rem, min(1.1rem + 2.4vw, 1.2rem + 3.2vh), 3.5rem)}}@media (min-width:1880px){:root{--container:1400px}}@font-face{font-family:'Host Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/host-grotesk-latin-ext.194782c8.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Host Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/host-grotesk-latin.ce9c9db8.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Host Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(../assets/fonts/host-grotesk-latin-ext.194782c8.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Host Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(../assets/fonts/host-grotesk-latin.ce9c9db8.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Host Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(../assets/fonts/host-grotesk-latin-ext.194782c8.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Host Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url(../assets/fonts/host-grotesk-latin.ce9c9db8.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Geist';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/geist-latin-ext.824f485b.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Geist';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/geist-latin.19f9c925.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Geist';font-style:normal;font-weight:500;font-display:swap;src:url(../assets/fonts/geist-latin-ext.824f485b.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Geist';font-style:normal;font-weight:500;font-display:swap;src:url(../assets/fonts/geist-latin.19f9c925.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Geist';font-style:normal;font-weight:600;font-display:swap;src:url(../assets/fonts/geist-latin-ext.824f485b.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Geist';font-style:normal;font-weight:600;font-display:swap;src:url(../assets/fonts/geist-latin.19f9c925.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Geist Mono';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/geist-mono-latin-ext.1a189eb9.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Geist Mono';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/geist-mono-latin.684ad5b5.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Geist Mono';font-style:normal;font-weight:500;font-display:swap;src:url(../assets/fonts/geist-mono-latin-ext.1a189eb9.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Geist Mono';font-style:normal;font-weight:500;font-display:swap;src:url(../assets/fonts/geist-mono-latin.684ad5b5.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Host Grotesk Fallback';src:local('Arial');size-adjust:101%;ascent-override:96%;descent-override:26%;line-gap-override:0%}*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 16px);scrollbar-gutter:stable;scrollbar-color:#c3c9d2 transparent}::selection{background:var(--blue);color:#fff}body{margin:0;background:var(--white);color:var(--ink);font:400 var(--fs-body)/1.55 var(--font);letter-spacing:-.004em;caret-color:var(--blue);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-optical-sizing:auto}img,svg{display:block;max-width:100%}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}h1,h2,h3,h4{margin:0;color:inherit;font-weight:500;text-wrap:balance}p{margin:0;text-wrap:pretty}ul,ol{margin:0;padding:0;list-style:none}.h2{font-size:var(--fs-h2);line-height:1.08;letter-spacing:-.034em}.sub{font-size:var(--fs-sub);line-height:1.5;letter-spacing:-.006em;color:var(--muted)}.small{font-size:var(--fs-small);line-height:1.5;color:var(--muted)}.eyebrow{display:block;font:500 15px/1.4 var(--font);letter-spacing:-.005em;color:var(--muted)}.container{width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}.band{padding-block:var(--band)}.band--dark>.container{width:min(100% - 2 * var(--gutter),var(--container) + 2 * var(--gutter));max-width:none;padding:clamp(40px,5vw,72px) clamp(24px,4.5vw,64px);border-radius:24px;background:#eef1f6}@media (max-width:599px){.band--dark>.container{width:calc(100% - 24px);border-radius:18px}}.btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:11px;border:1px solid transparent;font:500 15.5px/1 var(--font);letter-spacing:-.005em;white-space:nowrap;cursor:pointer;transition:background-color .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease)}.btn:hover{text-decoration:none}.btn:active{transform:translateY(1px)}.btn--sm{min-height:36px;padding:0 15px;border-radius:9px;font-size:14px}.btn--primary{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1.5px var(--ink),0 1px 2px rgba(16,20,27,.14);transition:background-color .2s var(--ease),box-shadow .2s var(--ease),color .2s var(--ease)}.btn--primary:hover,.btn--primary:focus-visible{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}.btn--primary.btn--sm{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px #c9d1de,0 1px 2px rgba(16,20,27,.06)}.btn--primary.btn--sm:hover,.btn--primary.btn--sm:focus-visible{background:var(--blue-tint);color:var(--ink);box-shadow:inset 0 0 0 1px var(--blue),0 1px 2px rgba(16,20,27,.06)}.btn--primary::after,.btn--secondary::after{content:"";flex:none;width:16px;height:16px;background:currentColor;-webkit-mask:var(--arrow) center / contain no-repeat;mask:var(--arrow) center / contain no-repeat;transition:transform .35s var(--ease-out)}.btn--sm::after,.field .btn::after{content:none}@media (hover:hover){.btn--primary:hover::after,.btn--secondary:hover::after{transform:translateX(2px)}}.more{position:relative;display:inline-flex;align-items:center;gap:.5em;font-size:var(--fs-body);font-weight:500;color:var(--ink);white-space:nowrap}.more::after{content:"";flex:none;width:1.05em;height:1.05em;background:currentColor;-webkit-mask:var(--arrow) center / contain no-repeat;mask:var(--arrow) center / contain no-repeat;transition:transform .35s var(--ease-out)}.more::before,.closing__mail::before{content:"";position:absolute;left:0;bottom:-7px;width:calc(100% - 1.55em);height:6px;background:var(--wave) 0 50% / 18px 6px repeat-x;clip-path:inset(0 100% 0 0);transition:clip-path .6s var(--ease-out)}.more:hover,.closing__mail:hover{color:var(--ink);text-decoration:none}.more{padding-block:4px;margin-block:-4px}.more::before{bottom:-3px}.more:hover::before,.more:focus-visible::before,.closing__mail:hover::before,.closing__mail:focus-visible::before{clip-path:inset(0)}.more:hover::after{transform:translateX(3px)}.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:var(--r-pill);font-size:var(--fs-micro);font-weight:500;letter-spacing:0;white-space:nowrap}.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.badge--available{background:var(--green-bg);color:var(--green)}.badge--soon{background:var(--amber-bg);color:var(--amber)}.skip-link{position:absolute;left:16px;top:-60px;z-index:100;background:var(--ink);color:#fff;padding:10px 16px;border-radius:var(--r-sm)}.skip-link:focus{top:12px;color:#fff}.site-header{position:sticky;top:0;z-index:50;height:var(--header-h);background:rgba(255,255,255,.95);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}.site-header.is-scrolled{border-bottom-color:var(--line-soft)}.site-header__inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.site-header__logo{flex:none}.site-header__logo img{height:54px;width:auto;aspect-ratio:640 / 174}.nav{display:flex;align-items:center;gap:4px}.nav__item{position:relative}.nav__link{display:inline-flex;align-items:center;gap:5px;padding:8px 12px;border-radius:var(--r-sm);font-size:14px;color:var(--ink);opacity:.85;transition:opacity .2s var(--ease),background-color .2s var(--ease)}.nav__link:hover,.nav__item:focus-within>.nav__link{opacity:1;text-decoration:none;background:var(--grey)}.nav__link[aria-current]{opacity:1;font-weight:500}.nav__menu a[aria-current] strong{color:var(--blue)}.nav__chev{width:9px;height:9px;opacity:.6;transition:transform .2s var(--ease)}.nav__item:hover .nav__chev,.nav__item.is-open .nav__chev{transform:rotate(180deg)}.nav__item{display:flex;align-items:center}.nav__menu{position:absolute;top:calc(100% + 10px);left:-10px;min-width:360px;padding:8px;background:#fff;border-radius:var(--r-card);box-shadow:0 0 0 1px rgba(0,0,0,.04),0 18px 50px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s .2s}.nav__menu::before{content:"";position:absolute;inset:-14px 0 auto;height:14px}.nav__item:hover .nav__menu,.nav__item:focus-within .nav__menu,.nav__item.is-open .nav__menu{opacity:1;visibility:visible;transform:none;transition-delay:0s}.nav__item.is-dismissed .nav__menu{opacity:0;visibility:hidden}.nav__toggle{display:inline-grid;place-items:center;width:26px;height:32px;margin-left:-12px;margin-right:-2px;padding:0;border:0;background:none;color:var(--ink);cursor:pointer;opacity:.6}.nav__toggle:hover{opacity:1}.nav__menu a{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:var(--r-inner);color:var(--ink)}.nav__menu a:hover{background:var(--grey);text-decoration:none}.nav__menu strong{display:block;font-size:14.5px;font-weight:500}.nav__menu .small{display:block;font-size:13px;margin-top:2px}.header-actions{display:flex;align-items:center;gap:14px}.lang-switch{display:inline-flex;padding:2px;border-radius:var(--r-pill);background:var(--grey)}.lang-switch a{display:inline-grid;place-items:center;min-width:34px;height:26px;padding:0 8px;border-radius:var(--r-pill);font-size:12px;font-weight:500;color:var(--muted)}.lang-switch a:hover{color:var(--ink);text-decoration:none}.lang-switch a[aria-current]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}.menu-toggle,.mobile-panel{display:none}@media (max-width:1199px){:root{--header-h:64px}.site-header__logo img{height:48px}.nav,.header-actions .lang-switch{display:none}.menu-toggle{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:var(--r-pill);border:0;background:var(--grey);color:var(--ink);cursor:pointer}.menu-toggle svg{width:18px;height:18px}.menu-toggle .icon-close{display:none}.site-header.is-open{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}.site-header.is-open .icon-open{display:none}.site-header.is-open .icon-close{display:block}.mobile-panel{display:flex;flex-direction:column;position:fixed;inset:var(--header-h) 0 0;z-index:49;background:#fff;padding:8px var(--gutter) calc(28px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s var(--ease),transform .25s var(--ease),visibility 0s .25s}.site-header.is-open .mobile-panel{opacity:1;visibility:visible;transform:none;transition-delay:0s}.m-group{padding:14px 0 8px;border-bottom:1px solid var(--line-soft)}.m-group__title{font-size:var(--fs-caption);color:var(--muted);margin-bottom:4px}.m-sub{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;color:var(--ink);font-size:var(--fs-body)}.m-link{display:block;padding:15px 0;border-bottom:1px solid var(--line-soft);font-size:22px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}.m-sub:hover,.m-link:hover{text-decoration:none;color:var(--blue)}.m-foot{margin-top:auto;padding-top:28px;display:grid;gap:18px}.m-foot .btn{width:100%}.m-lang{display:flex;align-items:center;justify-content:space-between}.m-lang span{font-size:var(--fs-small);color:var(--muted)}.m-lang .lang-switch a{height:44px;min-width:52px}}@media (max-width:767px){.header-actions .btn{display:none}}.map-dot{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,20,27,.28);cursor:pointer;z-index:2;transition:transform .2s var(--ease)}.map-dot.is-active,.map-dot:hover{transform:scale(1.35)}.map-dot::after{content:"";position:absolute;inset:-12px;border-radius:50%}.map-tag{position:absolute;z-index:1;display:flex;align-items:center;gap:6px;padding:3px 9px 3px 3px;border-radius:8px;background:#fff;font:500 12px/1.2 var(--font);color:var(--ink);white-space:nowrap;pointer-events:none;transform:translate(-12px,-50%);box-shadow:0 1px 2px rgba(16,20,27,.08),0 0 0 1px rgba(16,20,27,.05);transition:box-shadow .25s var(--ease)}.map-tag::before{content:"";flex:none;width:18px;height:18px;border-radius:6px;background:var(--blue-tint) var(--plant) center / 14px no-repeat}.map-tag.is-quiet{padding-right:3px}.map-tag.is-quiet span{display:none}.map-tag.is-target{outline:1.5px solid var(--blue);box-shadow:0 6px 14px -6px rgba(16,20,27,.3)}.stof{display:grid;grid-template-columns:1fr auto;gap:5px 8px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line-soft)}.stof:first-child{border-top:0}.stof__n{font-size:13px;font-weight:500;color:var(--ink)}.stof__v{font:500 12.5px/1 var(--font);font-variant-numeric:tabular-nums;color:var(--ink)}.stof__bar{grid-column:1 / 3;height:3px;border-radius:2px;background:var(--line-soft)}.stof__bar span{display:block;height:100%;border-radius:2px}@property --sweep{syntax:'<angle>';inherits:false;initial-value:360deg}@media (prefers-reduced-motion:no-preference){.boot{--data:.75s}.boot.is-ready .boot-card{opacity:0;transform:translateY(10px)}.boot.is-ready.is-in .boot-card{opacity:1;transform:none;transition:opacity .5s var(--ease-out-expo),transform .6s var(--ease-out-expo);transition-delay:calc(var(--i) * 85ms)}.boot.is-ready .boot-bar{transform:scaleX(0);transform-origin:left center}.boot.is-ready.is-in .boot-bar{transform:none;transition:transform .9s var(--ease-out-expo);transition-delay:calc(var(--data) + .25s + var(--i) * 60ms)}.boot.is-ready .boot-donut{--sweep:0deg;-webkit-mask:conic-gradient(#000 var(--sweep),transparent 0);mask:conic-gradient(#000 var(--sweep),transparent 0)}.boot.is-ready.is-in .boot-donut{--sweep:360deg;transition:--sweep 1.1s cubic-bezier(.45,0,.2,1);transition-delay:calc(var(--data) + .2s)}.boot.is-ready .boot-dot{opacity:0}.boot.is-ready.is-in .boot-dot{opacity:1;transition:opacity .4s ease-out;transition-delay:calc(var(--data) + .2s + var(--r) * .8s)}.boot.is-ready .boot-row{opacity:0;transform:translateX(-8px)}.boot.is-ready.is-in .boot-row{opacity:1;transform:none;transition:opacity .45s var(--ease-out-expo),transform .55s var(--ease-out-expo);transition-delay:calc(var(--data) + .4s + var(--i) * 90ms)}.boot-num{font-variant-numeric:tabular-nums}}.process__loop{display:none}.dash-line path{fill:none;stroke:var(--dash);stroke-width:1.5;stroke-dasharray:4.5 4.5}.is-flowing .dash-line path{animation:proc-march 1.6s linear infinite}@keyframes proc-march{to{stroke-dashoffset:-18}}@media (min-width:760px) and (max-width:1099px){.process__note,.process__return,.process__loop{grid-column:1 / -1}}.chain__trace{display:none}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}@media (prefers-reduced-motion:no-preference){.products.is-ready .badge{opacity:0;transform:translateX(8px)}.products.is-ready.is-in .badge{opacity:1;transform:none;transition:opacity .5s var(--ease-out-expo),transform .6s var(--ease-out-expo);transition-delay:calc(.55s + var(--i) * 260ms)}.products.is-ready.is-in .badge--available{position:relative}.products.is-ready.is-in .badge--available::after{content:"";position:absolute;inset:-1px;border-radius:inherit;animation:badge-pulse 1.4s var(--ease-out-expo) .9s 1 both}@keyframes badge-pulse{from{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 45%,transparent)}to{box-shadow:0 0 0 10px color-mix(in srgb,var(--green) 0%,transparent)}}}@media (max-width:899px){.products{grid-template-columns:1fr}}@media screen and (prefers-reduced-motion:no-preference){[data-rise].is-ready>*{opacity:0;transform:translateY(18px)}[data-rise].is-ready.is-in>*{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--i,0) * 110ms)}}.site-footer{background:var(--grey);color:var(--muted);font-size:var(--fs-caption);border-top:1px solid var(--line-soft)}.footer-news{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:24px 48px;align-items:center;padding-block:44px;border-bottom:1px solid var(--line)}.footer-news__label{margin-bottom:10px}.footer-news h2{font-size:var(--fs-h4);line-height:1.25;letter-spacing:-.015em;color:var(--ink)}.footer-news p{margin-top:6px;font-size:var(--fs-small)}.field{display:flex;gap:6px;padding:5px 5px 5px 18px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--line)}.field:focus-within{box-shadow:inset 0 0 0 1px var(--blue),0 0 0 4px rgba(26,63,214,.12)}.field input{flex:1;width:100%;min-width:0;border:0;outline:0;background:none;font:400 var(--fs-body) var(--font);color:var(--ink)}.field input::placeholder{color:var(--muted)}.field .btn{min-height:40px;padding:0 18px;border-radius:9px;font-size:var(--fs-small)}.field-note{margin-top:10px;font-size:var(--fs-caption)}.field-status:empty{display:none}.field-status{margin-top:4px;color:var(--blue)}.footer-news .field-error{margin-top:8px}.field.is-invalid,.field.is-invalid:focus-within{box-shadow:inset 0 0 0 1.5px var(--red)}.field.is-invalid:focus-within{box-shadow:inset 0 0 0 1.5px var(--red),0 0 0 4px rgba(197,48,48,.12)}.footer-main{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:32px;padding-block:44px}.footer-brand img{height:44px;width:auto}.footer-brand p{max-width:30ch;margin-top:16px;line-height:1.55}.footer-brand .footer-cities{margin-top:12px;color:var(--ink)}.footer-col h2{margin-bottom:12px;font-size:var(--fs-caption);font-weight:500;letter-spacing:0;color:var(--ink)}.footer-col ul{display:grid;gap:10px}.footer-col a{display:inline-block;padding-block:5px;margin-block:-5px;color:var(--muted)}.footer-col a:hover{color:var(--ink)}.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:18px 28px;border-top:1px solid var(--line)}.footer-bottom nav,.footer-bottom__end{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.footer-bottom .lang-switch{gap:0}.footer-bottom a{color:var(--muted)}.footer-bottom nav a{padding-block:5px;margin-block:-5px}.footer-bottom a:hover{color:var(--ink)}.site-footer .lang-switch{background:#fff;box-shadow:inset 0 0 0 1px var(--line-soft)}@media (max-width:1023px){.footer-news{grid-template-columns:1fr}.footer-main{grid-template-columns:repeat(2,1fr)}.footer-brand{grid-column:1 / -1}}.contact-form{display:grid;gap:12px;align-content:start;padding:26px clamp(24px,3vw,32px);border-radius:var(--r-tile);background:#fff;box-shadow:0 0 0 1px var(--line),0 24px 48px -32px rgba(16,20,27,.28)}.contact-form__title{font-size:24px;font-weight:500;letter-spacing:-.018em;color:var(--ink)}.form-field{display:grid;gap:7px;min-width:0;margin:0;padding:0;border:0}.form-field label,.form-field legend{padding:0;font-size:13.5px;font-weight:500;color:var(--text)}.form-field legend{margin-bottom:7px}.form-field input,.form-field textarea{width:100%;padding:11px 14px;border:0;border-radius:11px;background:#fff;font:400 var(--fs-small)/1.45 var(--font);color:var(--ink);box-shadow:inset 0 0 0 1px #d3d8e0;transition:box-shadow .2s var(--ease)}.form-field input{text-overflow:ellipsis}.form-field textarea{min-height:76px;resize:vertical}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-field input::placeholder,.form-field textarea::placeholder{color:#6b7280}.form-field input:hover,.form-field textarea:hover{box-shadow:inset 0 0 0 1px #b6bdc8}.form-field input:focus,.form-field textarea:focus{outline:0;box-shadow:inset 0 0 0 1.5px var(--blue),0 0 0 4px rgba(26,63,214,.12)}.form-field .opt{margin-left:4px;font-weight:400;color:var(--muted)}.field-error{display:flex;align-items:flex-start;gap:6px;font-size:13px;line-height:1.35;color:var(--red)}.field-error::before{content:"!";display:grid;place-items:center;flex:none;width:15px;height:15px;margin-top:1px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;font-weight:600}.field-error[hidden]{display:none}.form-field.is-invalid input{box-shadow:inset 0 0 0 1.5px var(--red)}.form-field.is-invalid input:focus{box-shadow:inset 0 0 0 1.5px var(--red),0 0 0 4px rgba(197,48,48,.12)}.contact-form__foot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:4px}.contact-form__note{max-width:32ch;font-size:13px;line-height:1.45;color:var(--muted)}.contact-rows{display:grid;grid-auto-rows:1fr;gap:6px;padding:8px;border-radius:var(--r-tile);background:var(--grey)}.contact-row{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:14px;align-items:center;padding:10px 14px 10px 10px;border-radius:14px;color:var(--ink);transition:background-color .2s var(--ease),box-shadow .2s var(--ease)}a.contact-row:hover,a.contact-row:focus-visible{background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 1px 2px rgba(16,20,27,.06),0 0 0 1px var(--line-soft)}.contact-card__icon{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#fff;color:var(--blue);box-shadow:inset 0 0 0 1.5px #c3d2f6}.contact-card__icon svg{width:19px;height:19px}.contact-row__txt{display:grid;min-width:0}.contact-card__label{margin-bottom:2px;font-size:13px;font-weight:500;color:var(--muted)}.contact-row__val{font-size:16px;font-weight:500;font-variant-numeric:tabular-nums}.contact-row__go{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .2s var(--ease)}.contact-row__go::after{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:var(--arrow) center / contain no-repeat;mask:var(--arrow) center / contain no-repeat;transition:transform .3s var(--ease-out)}a.contact-row:hover .contact-row__go,a.contact-row:focus-visible .contact-row__go{color:var(--blue)}a.contact-row:hover .contact-row__go::after{transform:translateX(3px)}@media (max-width:999px){.contact-form{max-width:640px}}@media (max-width:767px){.contact-rows{grid-auto-rows:auto}.form-row{grid-template-columns:1fr}.contact-form__foot{flex-direction:column;align-items:stretch}}.wt-deliver{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(36px,4vw,56px);align-items:center}.wt-deliver__text .eyebrow{margin-bottom:14px}.wt-deliver__text .h2{text-wrap:balance}.wt-deliver__text .btn{margin-top:24px}.wt-checks{display:grid;margin:22px 0 0;padding:0;list-style:none;border-top:1px solid #d9dee6}.wt-checks li{display:flex;align-items:flex-start;gap:14px;padding:10px 0 11px;border-bottom:1px solid #d9dee6;font-size:16px;line-height:1.45;color:var(--muted);text-wrap:pretty}.wt-checks strong{font-weight:500;color:var(--ink)}.wt-checks__icon{display:grid;place-items:center;flex:none;width:18px;height:24px;color:var(--blue)}.wt-checks__icon svg{width:17px;height:17px}.wt-deliver__photo{aspect-ratio:4 / 3.4;border-radius:var(--r-tile);overflow:hidden;background:var(--grey)}.wt-deliver__photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.03) brightness(1.02)}@media (prefers-reduced-motion:no-preference){.wt-deliver.is-ready .wt-checks li{position:relative;border-bottom-color:transparent}.wt-deliver.is-ready .wt-checks li::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#d9dee6;transform:scaleX(0);transform-origin:left center}.wt-deliver.is-ready.is-in .wt-checks li::after{transform:none;transition:transform .7s cubic-bezier(.65,0,.35,1);transition-delay:calc(.25s + var(--i) * 260ms)}.wt-deliver.is-ready .wt-checks__icon{opacity:0;transform:scale(.5)}.wt-deliver.is-ready.is-in .wt-checks__icon{opacity:1;transform:none;transition:opacity .35s ease-out,transform .5s var(--ease-out-expo);transition-delay:calc(var(--i) * 260ms)}.wt-deliver.is-ready .wt-checks li>:not(.wt-checks__icon){opacity:0;transform:translateX(-6px)}.wt-deliver.is-ready.is-in .wt-checks li>:not(.wt-checks__icon){opacity:1;transform:none;transition:opacity .5s var(--ease-out-expo),transform .6s var(--ease-out-expo);transition-delay:calc(.1s + var(--i) * 260ms)}}@media (min-width:1000px){.band--dark>.wt-deliver{--py:clamp(40px, 4vw, 52px);grid-template-columns:minmax(0,min(37.75rem,58%)) minmax(0,1fr);column-gap:clamp(36px,3.4vw,48px);overflow:hidden;align-items:stretch;padding-top:var(--py);padding-bottom:var(--py);padding-right:0}.wt-deliver__text{align-self:center}.wt-deliver__photo{aspect-ratio:auto;margin:calc(-1 * var(--py)) 0;border-radius:0}}@media (max-width:999px){.text-cards,.wt-deliver{grid-template-columns:1fr}}@media (min-width:1100px){.band--dark>.container:has(>.wd-examples){padding-block:clamp(40px,4vw,52px)}}.wwd-wire{fill:none;stroke:#d3dcf2;stroke-width:1;transition:stroke .3s var(--ease),stroke-width .3s var(--ease)}.wwd-wire.is-lit{stroke:var(--blue);stroke-width:1.5}.wwd-glint{fill:none;stroke-width:1.5;stroke-linecap:round;opacity:0;transition:opacity .6s var(--ease)}.wwd-hub{fill:#fff;stroke:#9fb4ee;stroke-width:1.2;transition:fill .3s var(--ease),stroke .3s var(--ease)}.wwd-hub.is-lit{fill:var(--blue);stroke:var(--blue)}@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}@keyframes lift{from{transform:translateY(12px)}to{transform:none}}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}</style>
+<style>
+.wvc-hero{padding-top:clamp(28px,4.5vw,64px)}
+.wvc-hero__grid{max-width:1080px;margin:0 auto;text-align:center}
+.wvc-hero__title{font-family:var(--font);font-weight:500;font-size:var(--fs-hero);line-height:1.04;letter-spacing:-.038em;color:var(--ink);margin:.3em auto 0;text-wrap:balance}
+.wvc-hero__title span{display:block;color:var(--blue)}
+.wvc-hero__title .nobr{display:inline;white-space:nowrap}
+.wvc-hero__lead{font-size:var(--fs-sub);color:var(--muted);max-width:58ch;margin:22px auto 0;text-wrap:pretty}
+.wvc-hero__actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center}
+/* hero dashboard mock-up — Watervergunningchecker product UI (fictieve demonstratiegegevens) */
+.wvc-dash{--d-line:#eceef2;--d-soft:#f1f3f6;--d-meta:#6b7280;--d-faint:#7d8491;font-family:var(--ui);color:var(--text);background:#f5f7fa;border:1px solid #e3e7ee;border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(16,20,27,.04),0 30px 60px -36px rgba(16,20,27,.22);margin:clamp(28px,3.4vw,48px) 0 0;font-size:var(--fs-caption);line-height:1.45;font-variant-numeric:tabular-nums;text-align:left}
+.wvc-dash svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.wvc-bar{display:flex;align-items:center;gap:12px;height:48px;padding:0 16px;background:#fff;border-bottom:1px solid var(--d-line)}
+.wvc-bar__brand{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);font-size:13px;white-space:nowrap}
+.wvc-bar__logo{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#6c90f7,#1a3fd6);flex:none}
+.wvc-bar__crumb{display:flex;align-items:center;gap:7px;min-width:0;overflow:hidden;color:var(--d-meta);padding-left:8px;font-size:12.5px}
+.wvc-bar__crumb b{color:var(--ink);font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.wvc-bar__crumb span{white-space:nowrap}
+.wvc-bar__crumb .sep{color:#c3c9d4}
+.wvc-bar__end{margin-left:auto;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.wvc-bar__ref{color:var(--d-faint);font-size:12px}
+.wvc-bar__user{width:24px;height:24px;border-radius:50%;background:#eef0f4;color:#3d4452;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600}
+.wvc-chip{font:500 11.5px/1 var(--ui);padding:4px 9px 4px 8px;border-radius:99px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.wvc-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--dot);flex:none}
+.wvc-chip--amber{--dot:#e0a020;background:#fff3d9;color:#8a5800}
+.wvc-chip--blue{--dot:#1a3fd6;background:#edf1fe;color:#1a3fd6}
+.wvc-chip--green{--dot:#2f9e52;background:#e7f5eb;color:#1f7a3a}
+.wvc-chip--grey{--dot:#8a909b;background:#f1f3f6;color:#545b67}
+.wvc-body{display:grid;grid-template-columns:216px minmax(0,1fr) minmax(0,1.22fr);gap:10px;padding:10px}
+.wvc-dc{background:#fff;border:1px solid #e9ecf1;border-radius:12px}
+.wvc-side{padding:14px 10px 10px;display:flex;flex-direction:column}
+.wvc-lbl{font-size:11.5px;font-weight:500;color:var(--d-faint);margin:0 0 6px;padding:0 8px}
+.wvc-nav{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:1px}
+.wvc-nav li{display:flex;align-items:center;gap:9px;height:32px;padding:0 8px;border-radius:7px;color:#3d4452;font-weight:500}
+.wvc-nav li svg{width:16px;height:16px;stroke-width:1.5;color:#8a909b}
+.wvc-nav li span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wvc-nav li b{font:500 11.5px var(--ui);color:var(--d-faint)}
+.wvc-nav li.on{background:#f1f4fb;color:var(--ink);font-weight:600}
+.wvc-nav li.on svg,.wvc-nav li.on b{color:#1a3fd6}
+.wvc-files{list-style:none;margin:0 0 18px;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:1px}
+.wvc-files li{display:flex;align-items:center;gap:8px;height:28px;padding:0 8px;border-radius:7px;color:#545b67;font-size:12px;min-width:0}
+.wvc-files li svg{color:#8a909b}
+.wvc-files li span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wvc-files li b{font-weight:500;font-size:11.5px;color:var(--d-meta)}
+.wvc-files li.on{color:var(--ink);font-weight:600}
+.wvc-files li.on svg{color:#1a3fd6}
+.wvc-leg{list-style:none;margin:0;padding:0 8px;display:grid;gap:9px;font-size:12px;color:#5c6370}
+.wvc-leg li{display:flex;align-items:center;gap:9px}
+.wvc-leg i{width:7px;height:7px;border-radius:50%;flex:none}
+.wvc-leg .b{background:#1a3fd6}.wvc-leg .a{background:#e0a020}.wvc-leg .g{background:#8a909b}.wvc-leg .k{background:#2f9e52}
+.wvc-prog{margin-top:auto;padding:10px 8px 2px}
+.wvc-prog .wvc-lbl{padding:0}
+.wvc-prog__top{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;margin-bottom:7px}
+.wvc-prog__top b{font:600 12px var(--ui);color:var(--ink)}
+.wvc-prog__bar{height:4px;border-radius:99px;background:#eceef2;overflow:hidden}
+.wvc-prog__bar i{display:block;height:100%;width:43%;background:#1a3fd6;border-radius:99px}
+.wvc-prog__note{color:var(--d-meta);font-size:11.5px;margin:8px 0 0}
+.wvc-doc{display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.wvc-doc__head{display:flex;align-items:center;justify-content:space-between;gap:8px;height:40px;padding:0 10px 0 14px;border-bottom:1px solid var(--d-line);flex:none}
+.wvc-doc__title{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);font-size:12.5px;white-space:nowrap;min-width:0}
+.wvc-doc__title svg{color:#8a909b}
+.wvc-doc__pager{display:flex;align-items:center;gap:2px;font:500 12px var(--ui);color:var(--d-meta);white-space:nowrap}
+.wvc-doc__pager i{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;color:#8a909b}
+.wvc-doc__pager i svg{width:13px;height:13px}
+.wvc-view{flex:1;min-height:0;background:#f5f7fa;padding:16px 16px 0;overflow:hidden}
+.wvc-paper__no{display:block;margin-top:12px;text-align:center;font-size:11px;color:#a3abb9}
+.wvc-peek{height:0;margin-top:14px}
+.wvc-paper--next{padding:24px 22px;height:320px}
+.wvc-paper--next i{display:block;height:6px;border-radius:3px;background:#eceef2;margin:0 0 11px}
+.wvc-paper--next i.t{width:38%;height:8px;background:#e1e4ea;margin-bottom:16px}
+.wvc-paper--next i.s{width:68%}
+.wvc-paper{background:#fff;border:1px solid transparent;border-radius:3px;box-shadow:0 1px 3px rgba(16,20,27,.06),0 10px 28px -18px rgba(16,20,27,.18);padding:12px 20px 12px}
+.wvc-paper__hd{display:flex;justify-content:space-between;gap:8px;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid #f0f2f5;font-size:10.5px;letter-spacing:.02em;color:#a3abb9}
+.wvc-doc__h{font-family:var(--font);font-weight:600;color:var(--ink);font-size:14px;margin:0 0 6px;letter-spacing:-.01em}
+.wvc-doc__p{font-size:11.5px;line-height:1.55;color:var(--muted);margin:7px 0}
+.wvc-clause{position:relative;border-radius:7px;padding:13px 12px 8px;margin:16px 0 11px}
+.wvc-clause--blue{background:#f7f9ff;border:1px solid #d3ddfb}
+.wvc-clause--amber{background:#fffbf3;border:1px solid #f1dfb2}
+.wvc-ctag{position:absolute;top:-10px;right:10px;font:600 11px/1 var(--ui);letter-spacing:.01em;padding:4px 7px;border-radius:5px;white-space:nowrap}
+.wvc-clause--blue .wvc-ctag{background:#e5ecfd;color:#1a3fd6}
+.wvc-clause--amber .wvc-ctag{background:#fbedcd;color:#7a4f00}
+.wvc-clause>p{font-size:11.5px;color:var(--text);line-height:1.5;margin:0}
+.wvc-tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.wvc-tbl th{font-size:11.5px;font-weight:500;color:var(--d-faint);text-align:left;padding:10px 0 7px;white-space:nowrap;border-bottom:1px solid var(--d-line)}
+.wvc-tbl td{padding:9px 0;border-bottom:1px solid var(--d-soft);color:var(--text);vertical-align:middle}
+.wvc-tbl tbody tr:last-child td{border-bottom:0}
+.wvc-tbl th+th,.wvc-tbl td+td{padding-left:12px}
+.wvc-panel .wvc-tbl th:first-child,.wvc-panel .wvc-tbl td:first-child{width:100%}
+.wvc-panel .wvc-tbl thead th{padding-top:9px;padding-bottom:8px}
+.wvc-panel .wvc-tbl th+th,.wvc-panel .wvc-tbl td+td{padding-left:22px}
+.wvc-tbl .num{text-align:right;color:var(--ink);font-weight:600;white-space:nowrap}
+.wvc-tbl .u{color:var(--d-meta);font-weight:400;font-size:.92em;display:inline-block;width:28px;text-align:left}
+.wvc-tbl .src{text-align:right;font-size:12px;font-weight:500;color:#5c6370;white-space:nowrap}
+.wvc-tbl td.src::before{content:"";display:inline-block;width:12px;height:12px;margin:-3px 5px -2px 0;vertical-align:middle;background:currentColor;opacity:.75;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5'/%3E%3C/svg%3E") center/contain no-repeat}
+.wvc-tbl .st{text-align:right;white-space:nowrap}
+.wvc-tbl th.num,.wvc-tbl th.src,.wvc-tbl th.st{text-align:right;font-family:var(--ui);font-weight:500;color:var(--d-meta)}
+.wvc-tbl tr.sel td{background:#f7f9ff}
+.wvc-tbl tr.sel td:first-child{box-shadow:-14px 0 0 #f7f9ff}
+.wvc-tbl tr.sel td:last-child{box-shadow:14px 0 0 #f7f9ff}
+.wvc-tbl--mini{margin-top:8px;font-size:11.5px}
+.wvc-tbl--mini th{padding-top:0;border-bottom-color:#e1e8fb}
+.wvc-tbl--mini td{padding:5px 0;border-bottom-color:#edf1fc}
+.wvc-analysis{display:flex;flex-direction:column;gap:10px;min-width:0}
+.wvc-analysis>:last-child{flex:1}
+.wvc-stats{display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+.wvc-stat{position:relative;padding:13px 14px 14px;min-width:0}
+.wvc-stat+.wvc-stat{border-left:1px solid var(--d-soft)}
+.wvc-stat b{display:block;font-family:var(--font);font-weight:500;font-size:1.75rem;line-height:1;letter-spacing:-.025em;color:var(--ink)}
+.wvc-stat b.amber{color:#9a6200}
+.wvc-stat b.red{color:#c53030}
+.wvc-stat span{display:block;font-size:12px;color:var(--d-meta);line-height:1.35;margin-top:8px;text-wrap:balance}
+.wvc-panel{padding:0 14px 4px}
+.wvc-ph{display:flex;align-items:center;justify-content:space-between;gap:8px;height:40px;margin:0 -14px;padding:0 14px;border-bottom:1px solid var(--d-line)}
+.wvc-ph span:first-child{font-weight:600;color:var(--ink);font-size:13px}
+.wvc-ph span+span{font-size:11.5px;color:var(--d-meta)}
+.wvc-krw{list-style:none;margin:0;padding:0}
+.wvc-krw li{padding:12px 0;border-top:1px solid var(--d-soft)}
+.wvc-krw li:first-child{border-top:0}
+.wvc-krw__top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
+.wvc-krw__t{font-weight:600;color:var(--ink);font-size:12.5px}
+.wvc-krw li>p{font-size:12px;color:var(--muted);margin:0;line-height:1.45}
+.wvc-krw li>.wvc-krw__ref{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:#5c6370;margin-top:4px}
+.wvc-krw__ref::before{content:"";width:12px;height:12px;flex:none;background:currentColor;opacity:.75;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 3v5h5'/%3E%3C/svg%3E") center/contain no-repeat}
+.wvc-krw li>.wvc-krw__ref--miss{color:#6b7280}
+.wvc-krw__ref--miss::before{background:#d64545;opacity:1;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 8v4.5M12 16h.01'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 8v4.5M12 16h.01'/%3E%3C/svg%3E") center/contain no-repeat}
+.wvc-foot{display:flex;justify-content:space-between;gap:16px;padding:10px 16px;border-top:1px solid var(--d-line);background:#fff;font-size:11.5px;color:var(--d-faint)}
+@media(max-width:1100px){.wvc-stats{grid-template-columns:1fr 1fr}.wvc-stat:nth-child(3){border-left:0}.wvc-stat:nth-child(n+3){border-top:1px solid var(--d-soft)}}
+/* rise in on load: the frame lifts into place, then the panels follow one after another */
+@media (prefers-reduced-motion:no-preference){
+  .wvc-dash{animation:contact-up 1s var(--ease-out-expo) .3s both}
+  .wvc-bar,.wvc-side,.wvc-doc,.wvc-analysis>*{animation:hero-rise .8s var(--ease-out-expo) both}
+  .wvc-bar{animation-delay:.42s}.wvc-side{animation-delay:.52s}.wvc-doc{animation-delay:.62s}
+  .wvc-analysis>:nth-child(1){animation-delay:.7s}.wvc-analysis>:nth-child(2){animation-delay:.8s}.wvc-analysis>:nth-child(3){animation-delay:.9s}
+}
+@media(max-width:860px){.wvc-body{grid-template-columns:minmax(0,1fr)}.wvc-side,.wvc-peek{display:none}.wvc-view{padding-bottom:16px}.wvc-bar__ref,.wvc-bar__crumb>:nth-child(-n+2){display:none}}
+@media(max-width:600px){.wvc-bar__crumb,.wvc-bar__ref{display:none}.wvc-view{padding:10px}.wvc-paper{padding:16px 14px 10px}.wvc-foot{flex-direction:column;gap:4px}.wvc-tbl .src{display:none}}
+/* wat levert het op — kern statement + benefits on the Werktool "wat het oplevert" pattern */
+.wvc-deliver .h2 span{color:var(--blue)}
+.wvc-deliver .wt-checks strong{display:block;margin-bottom:2px}
+/* hoe werkt het — paper to insight: the same permit in three stages, from a pile of PDFs to a clean result */
+.wvc-stages{list-style:none;margin:var(--head-gap) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr) 44px minmax(0,1fr)}
+.wvc-stage{display:flex;flex-direction:column;min-width:0}
+.wvc-stage__vis{position:relative;flex:none;height:300px;border-radius:20px;overflow:hidden;font-family:var(--ui);font-variant-numeric:tabular-nums}
+.wvc-stage__vis--1{background:#f3f5f8}.wvc-stage__vis--2{background:#ebf0fc}.wvc-stage__vis--3{background:#dde6fb}
+.wvc-stage-arrow{position:relative;height:300px}
+.wvc-stage-arrow span{position:absolute;left:6px;right:6px;top:50%;height:2px;margin-top:-1px;background:repeating-linear-gradient(90deg,#9db2ee 0 6px,transparent 6px 11px)}
+.wvc-stage-arrow span::after{content:"";position:absolute;right:0;top:50%;width:8px;height:8px;border-top:2px solid #7f9be8;border-right:2px solid #7f9be8;transform:translate(1px,-50%) rotate(45deg)}
+.wvc-stage-arrow span::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(26,63,214,.15);animation:wvc-dot 2s ease-in-out infinite}
+@keyframes wvc-dot{0%{transform:translateX(0);opacity:0}25%,75%{opacity:1}100%{transform:translateX(24px);opacity:0}}
+.wvc-stage__cap{padding:22px 6px 0}
+.wvc-stage__n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#fff;color:var(--blue);font:500 13px var(--ui);box-shadow:inset 0 0 0 1.5px #c3d2f6}
+.wvc-stage__cap h3{font-size:var(--fs-h4);font-weight:500;line-height:1.2;letter-spacing:-.015em;color:var(--ink);margin:14px 0 6px}
+.wvc-stage__cap p{margin:0;font-size:15px;line-height:1.55;color:var(--muted);max-width:34ch;text-wrap:pretty}
+/* stage 1: a fanned stack of permits */
+.wvc-s-sheet{position:absolute;left:50%;top:50%;width:150px;height:196px;margin:-98px 0 0 -75px;padding:20px 16px;background:#fff;border-radius:6px;box-shadow:0 1px 2px rgba(16,20,27,.06),0 14px 30px -16px rgba(16,20,27,.3)}
+.wvc-s-sheet.s3{transform:translate(34px,-10px) rotate(8deg)}
+.wvc-s-sheet.s2{transform:translate(-30px,6px) rotate(-7deg)}
+.wvc-s-sheet i,.wvc-s-page i{display:block;height:5px;border-radius:3px;background:#e7eaf0;margin:0 0 9px}
+.wvc-s-sheet i.t,.wvc-s-page i.t{width:55%;height:7px;background:#d5dae4;margin-bottom:14px}
+.wvc-s-sheet i.s,.wvc-s-page i.s{width:70%}
+.wvc-s-pdf{position:absolute;top:12px;right:12px;font-size:9px;font-weight:700;line-height:1;letter-spacing:.06em;color:#5f6ea0;background:#eef2fb;padding:4px 5px;border-radius:4px}
+.wvc-s-yr{position:absolute;left:16px;bottom:14px;font-size:12px;font-weight:600;color:#3d4452}
+/* stage 2: the permit page lights up and the values come out */
+.wvc-s-page{position:absolute;left:6%;top:30px;width:44%;max-width:160px;height:240px;padding:22px 16px;background:#fff;border-radius:6px;box-shadow:0 1px 2px rgba(16,20,27,.06),0 14px 30px -16px rgba(16,20,27,.3)}
+.wvc-s-page i.hl{background:#9fb5f3;box-shadow:0 0 0 4px #e3eafd}
+.wvc-s-page i.hla{background:#f0c766;box-shadow:0 0 0 4px #fdf1d4}
+.wvc-s-pills{position:absolute;left:36%;right:4%;top:56px;display:grid;gap:8px;justify-items:start}
+.wvc-s-pill{display:inline-flex;align-items:baseline;gap:5px;white-space:nowrap;font-size:12.5px;font-weight:500;color:#3d4452;background:#fff;border-radius:99px;padding:6px 11px;box-shadow:0 0 0 1px rgba(26,63,214,.16),0 8px 18px -10px rgba(26,63,214,.45)}
+.wvc-s-pill b{font-weight:600;color:var(--ink)}
+.wvc-s-pill--a{color:#8a5800;box-shadow:0 0 0 1px rgba(154,98,0,.22),0 8px 18px -10px rgba(154,98,0,.4)}
+/* stage 3: the clean result */
+.wvc-s-result{position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);padding:16px;background:#fff;border-radius:12px;box-shadow:0 1px 2px rgba(16,20,27,.06),0 18px 36px -18px rgba(26,63,214,.4);font-size:13px;line-height:1.4;color:var(--text)}
+.wvc-s-result__h{margin:0 0 12px;font-weight:600;color:var(--ink);font-size:13.5px}
+.wvc-s-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:8px}
+.wvc-s-kpis span{background:#f5f7fb;border-radius:8px;padding:8px;font-size:11px;color:#6b7280;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wvc-s-kpis b{display:block;font-family:var(--font);font-size:1.25rem;font-weight:600;line-height:1;color:var(--ink);margin-bottom:4px}
+.wvc-s-kpis b.amber{color:#9a6200}.wvc-s-kpis b.red{color:var(--red)}
+.wvc-s-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line-soft);font-size:12.5px}
+.wvc-s-row span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* arrival (site.js onArrival): stages and arrows come in one after another, the sheets fan out, the values pop out */
+.wvc-stages.is-ready>li:not(.is-in){opacity:0;transform:translateY(14px)}
+.wvc-stages.is-ready>li.is-in{transition:opacity .5s ease-out var(--d),transform .8s var(--ease-out-expo) var(--d)}
+.wvc-stages.is-ready .wvc-stage:not(.is-in) .wvc-s-sheet{transform:none}
+.wvc-stages.is-ready .wvc-stage.is-in .wvc-s-sheet{transition:transform 1s var(--ease-out-expo) calc(var(--d) + .2s)}
+.wvc-stages.is-ready .wvc-stage:not(.is-in) .wvc-s-pill{opacity:0;transform:translateX(-14px) scale(.96)}
+.wvc-stages.is-ready .wvc-stage.is-in .wvc-s-pill{transition:opacity .4s ease-out calc(var(--d) + var(--p)),transform .7s var(--ease-out-expo) calc(var(--d) + var(--p))}
+.wvc-s-pill:nth-child(1){--p:.45s}.wvc-s-pill:nth-child(2){--p:.56s}.wvc-s-pill:nth-child(3){--p:.67s}.wvc-s-pill:nth-child(4){--p:.78s}
+@media(prefers-reduced-motion:reduce){.wvc-stage-arrow span::before{animation:none;opacity:0}}
+@media(max-width:1099px){
+  .wvc-stages{grid-template-columns:minmax(0,1fr)}
+  .wvc-stage{flex-direction:row;align-items:center;gap:clamp(20px,4vw,40px)}
+  .wvc-stage__vis{width:55%;height:280px}
+  .wvc-stage__cap{flex:1;padding:0}
+  .wvc-stage-arrow{height:44px}
+  .wvc-stage-arrow span{left:27.5%;right:auto;top:6px;bottom:6px;width:2px;height:auto;margin:0 0 0 -1px;background:repeating-linear-gradient(180deg,#9db2ee 0 6px,transparent 6px 11px)}
+  .wvc-stage-arrow span::after{right:auto;top:auto;bottom:0;left:50%;transform:translate(-50%,1px) rotate(135deg)}
+  .wvc-stage-arrow span::before{display:none}
+}
+@media(max-width:640px){
+  .wvc-stage{flex-direction:column;align-items:stretch;gap:0}
+  .wvc-stage__vis{width:auto}
+  .wvc-stage__cap{padding:20px 4px 2px}
+  .wvc-stage-arrow span{left:50%}
+}
+/* contact — the shared form (.contact-form) and the Contact page's action rows (.contact-rows) */
+.wvc-contact__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,72px);align-items:center}
+.wvc-contact__intro .sub{margin-top:18px}
+.wvc-contact__rows{margin:30px -10px 0;padding:0;background:none;max-width:460px}
+.wvc-form .contact-form__title{line-height:1.2;text-wrap:balance;margin:0 0 6px}
+.wvc-form .contact-form__note{max-width:none;flex:1;min-width:0}
+.wvc-form .contact-form__foot .btn{flex:none}
+@media(max-width:1100px){.wvc-form .contact-form__foot{flex-direction:column;align-items:stretch}}
+@media(max-width:860px){
+  .wvc-hero__grid,.wvc-contact__grid{grid-template-columns:1fr}
+}
+</style>
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<a class="skip-link" href="#main">Naar de inhoud</a>
+<header class="site-header">
+<div class="container site-header__inner">
+<a class="site-header__logo" href="../" aria-label="AquaWare, naar de homepage"><img src="../assets/img/logo.4e4b4b45.webp" srcset="../assets/img/logo-200.5ff2b707.webp 200w, ../assets/img/logo-400.b1b9fca7.webp 400w, ../assets/img/logo.4e4b4b45.webp 640w" sizes="(max-width: 1199px) 177px, 199px" alt="AquaWare — Future-driven water engineering" width="640" height="174"></a>
+<nav class="nav" aria-label="Hoofdmenu">
+<div class="nav__item">
+<a class="nav__link" href="../werktool/">Producten</a><button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-producten" aria-label="Submenu Producten"><svg class="nav__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+<div class="nav__menu" id="menu-producten">
+<a href="../werktool/"><span><strong>Werktool indirecte lozingen</strong><span class="small">Van duizenden bedrijven naar een actielijst</span></span><span class="badge badge--available">Beschikbaar</span></a>
+<a href="../watervergunningchecker/"><span><strong>Watervergunningchecker</strong><span class="small">Vergunningen sneller analyseren, KRW-proof</span></span><span class="badge badge--available">Beschikbaar</span></a>
+<a href="../contact/?onderwerp=agro"><span><strong>Agro-Hotspottool</strong><span class="small">Binnenkort · vraag een pilot aan</span></span><span class="badge badge--soon">Binnenkort</span></a>
+<a href="../contact/?onderwerp=pfas"><span><strong>PFAS-massabalanstool</strong><span class="small">Binnenkort · vraag een pilot aan</span></span><span class="badge badge--soon">Binnenkort</span></a>
+</div>
+</div>
+<a class="nav__link" href="../waterdata/">Diensten</a>
+<div class="nav__item">
+<a class="nav__link" href="../kennis/">Kennisbank</a><button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-kennisbank" aria-label="Submenu Kennisbank"><svg class="nav__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+<div class="nav__menu" id="menu-kennisbank">
+<a href="../kennis/"><span><strong>Blogs</strong><span class="small">Inzichten en analyses</span></span></a>
+<a href="../praktijk/"><span><strong>Praktijk</strong><span class="small">Cases en nieuws uit de praktijk</span></span></a>
+</div>
+</div>
+<a class="nav__link" href="../security/">Security</a>
+<a class="nav__link" href="../over/">Over AquaWare</a>
+<a class="nav__link" href="../contact/">Contact</a>
+</nav>
+<div class="header-actions">
+<nav class="lang-switch" aria-label="Taal"><a href="./" hreflang="nl" lang="nl" aria-current="true" title="Nederlands" aria-label="NL, Nederlands">NL</a><a href="../en/watervergunningchecker/" hreflang="en" lang="en" title="English" aria-label="EN, English">EN</a></nav>
+<a class="btn btn--primary btn--sm" href="../contact/">Bespreek uw opgave</a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-panel" aria-label="Menu openen">
+<svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+<svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+</button>
+</div>
+</div>
+<div class="mobile-panel" id="mobile-panel">
+<div class="m-group">
+<div class="m-group__title">Producten</div>
+<a class="m-sub" href="../werktool/">Werktool indirecte lozingen <span class="badge badge--available">Beschikbaar</span></a>
+<a class="m-sub" href="../watervergunningchecker/">Watervergunningchecker <span class="badge badge--available">Beschikbaar</span></a>
+<a class="m-sub" href="../contact/?onderwerp=agro">Agro-Hotspottool <span class="badge badge--soon">Binnenkort</span></a>
+<a class="m-sub" href="../contact/?onderwerp=pfas">PFAS-massabalanstool <span class="badge badge--soon">Binnenkort</span></a>
+</div>
+<a class="m-link" href="../waterdata/">Diensten</a>
+<a class="m-link" href="../kennis/">Kennisbank</a>
+<a class="m-link" href="../praktijk/">Praktijk</a>
+<a class="m-link" href="../security/">Security</a>
+<a class="m-link" href="../over/">Over AquaWare</a>
+<a class="m-link" href="../contact/">Contact</a>
+<div class="m-foot">
+<a class="btn btn--primary" href="../contact/">Bespreek uw opgave</a>
+<div class="m-lang"><span>Taal</span><nav class="lang-switch" aria-label="Taal"><a href="./" hreflang="nl" lang="nl" aria-current="true" title="Nederlands" aria-label="NL, Nederlands">NL</a><a href="../en/watervergunningchecker/" hreflang="en" lang="en" title="English" aria-label="EN, English">EN</a></nav></div>
+</div>
+</div>
+</header>
+<main id="main" class="wvc">
+<section class="wvc-hero container" aria-labelledby="wvc-title">
+<div class="wvc-hero__grid">
+<div>
+<p class="eyebrow">AquaWare Watervergunningchecker <span class="badge badge--available">Beschikbaar</span></p>
+<h1 class="wvc-hero__title" id="wvc-title">Watervergunningen sneller analyseren. <span>Gerichter <span class="nobr">KRW-proof</span> maken.</span></h1>
+</div>
+<div>
+<p class="wvc-hero__lead">De AquaWare Watervergunningchecker helpt waterschappen en andere bevoegde gezagen om bestaande lozingsvergunningen sneller te analyseren, lozingseisen inzichtelijk te maken en mogelijke actualisatiepunten te identificeren.</p>
+<div class="wvc-hero__actions">
+<a class="btn btn--primary" href="../contact/">Bespreek uw KRW-opgave</a>
+<a class="more" href="#hoe-werkt-het">Bekijk hoe het werkt</a>
+</div>
+</div>
+</div>
+<figure class="wvc-dash" role="img" aria-label="Voorbeeldweergave van de Watervergunningchecker met fictieve demonstratiegegevens.">
+<div class="wvc-bar">
+<div class="wvc-bar__brand"><span class="wvc-bar__logo"></span>AquaWare</div>
+<div class="wvc-bar__crumb"><span>Watervergunningchecker</span><span class="sep">/</span><span>Vergunningen</span><span class="sep">/</span><b>Industriële lozing A</b></div>
+<div class="wvc-bar__end"><span class="wvc-bar__ref">WVV-2009-0142</span><span class="wvc-chip wvc-chip--amber">Controle nodig</span><span class="wvc-bar__user">A</span></div>
+</div>
+<div class="wvc-body">
+<aside class="wvc-dc wvc-side">
+<ul class="wvc-nav">
+<li><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></li>
+<li class="on"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>Vergunningen</span><b>3</b></li>
+<li><svg viewBox="0 0 24 24"><path d="m4 6 1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17M11 6h9M11 12h9M11 18h9"/></svg><span>Voorschriften</span><b>42</b></li>
+<li><svg viewBox="0 0 24 24"><path d="M12 3.5s-6 6.4-6 10.5a6 6 0 0 0 12 0c0-4.1-6-10.5-6-10.5z"/></svg><span>Lozingseisen</span><b>8</b></li>
+<li><svg viewBox="0 0 24 24"><path d="M3 9c1.5-1.3 3-1.3 4.5 0s3 1.3 4.5 0 3-1.3 4.5 0 3 1.3 4.5 0M3 15c1.5-1.3 3-1.3 4.5 0s3 1.3 4.5 0 3-1.3 4.5 0 3 1.3 4.5 0"/></svg><span>KRW &amp; actualisatie</span><b>6</b></li>
+<li><svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg><span>Rapportages</span></li>
+</ul>
+<p class="wvc-lbl">Documenten</p>
+<ul class="wvc-files">
+<li class="on"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>Watervergunning</span><b>2009</b></li>
+<li><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>Wijzigingsbesluit</span><b>2014</b></li>
+<li><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>Wijzigingsbesluit</span><b>2019</b></li>
+</ul>
+<p class="wvc-lbl">Legenda</p>
+<ul class="wvc-leg">
+<li><i class="b"></i>Geëxtraheerd</li>
+<li><i class="a"></i>Nader onderzoek</li>
+<li><i class="g"></i>Aanvullende gegevens</li>
+<li><i class="k"></i>Beoordeeld</li>
+</ul>
+<div class="wvc-prog">
+<p class="wvc-lbl">Voortgang</p>
+<div class="wvc-prog__top"><span>Beoordeeld</span><b>18 / 42</b></div>
+<div class="wvc-prog__bar"><i></i></div>
+<p class="wvc-prog__note">Laatst bijgewerkt · vandaag</p>
+</div>
+</aside>
+<div class="wvc-dc wvc-doc">
+<div class="wvc-doc__head"><span class="wvc-doc__title"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Origineel vergunningdocument</span><span class="wvc-doc__pager"><i><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></i>p. 7 / 24<i><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></i></span></div>
+<div class="wvc-view">
+<div class="wvc-paper">
+<div class="wvc-paper__hd"><span>Watervergunning</span><span>WVV-2009-0142</span></div>
+<p class="wvc-doc__h">3. Lozingseisen</p>
+<p class="wvc-doc__p">De vergunninghouder draagt er zorg voor dat het te lozen afvalwater voldoet aan de in dit hoofdstuk opgenomen eisen. Metingen worden uitgevoerd volgens de daarvoor geldende normen.</p>
+<div class="wvc-clause wvc-clause--blue">
+<span class="wvc-ctag">VS 3.2.1 · Geselecteerd</span>
+<p>3.2.1 Het te lozen afvalwater mag de onderstaande emissiegrenswaarden niet overschrijden.</p>
+<table class="wvc-tbl wvc-tbl--mini">
+<thead><tr><th>Parameter</th><th class="num">Grenswaarde</th></tr></thead>
+<tbody>
+<tr><td>CZV</td><td class="num">150 <span class="u">mg/l</span></td></tr>
+<tr><td>Stikstof totaal</td><td class="num">10 <span class="u">mg/l</span></td></tr>
+<tr><td>Zink</td><td class="num">0,5 <span class="u">mg/l</span></td></tr>
+</tbody>
+</table>
+</div>
+<p class="wvc-doc__p">De in 3.2.1 genoemde waarden gelden als daggemiddelde, bepaald uit een etmaalverzameld monster. Een overschrijding wordt onverwijld gemeld aan het bevoegd gezag.</p>
+<div class="wvc-clause wvc-clause--amber">
+<span class="wvc-ctag">Mogelijk aandachtspunt</span>
+<p>3.4 Bemonstering vindt eenmaal per jaar plaats.</p>
+</div>
+<p class="wvc-doc__p">De meetresultaten worden geregistreerd en ten minste vijf jaar bewaard. Het bevoegd gezag kan, indien daartoe aanleiding bestaat, aanvullende bemonstering verlangen.</p>
+<span class="wvc-paper__no">7</span>
+</div>
+<div class="wvc-peek" aria-hidden="true"><div class="wvc-paper wvc-paper--next"><i class="t"></i><i></i><i></i><i class="s"></i><i></i><i></i><i class="s"></i><i></i></div></div>
+</div>
+</div>
+<div class="wvc-analysis">
+<div class="wvc-dc wvc-stats">
+<div class="wvc-stat"><b>42</b><span>voorschriften geïdentificeerd</span></div>
+<div class="wvc-stat"><b>8</b><span>stoffen en parameters</span></div>
+<div class="wvc-stat"><b class="amber">6</b><span>mogelijke aandachtspunten</span></div>
+<div class="wvc-stat"><b class="red">3</b><span>ontbrekende gegevens</span></div>
+</div>
+<div class="wvc-dc wvc-panel">
+<div class="wvc-ph"><span>Lozingseisen</span><span>3 van 8</span></div>
+<table class="wvc-tbl">
+<thead><tr><th>Parameter</th><th class="num">Waarde</th><th class="src">Bron</th><th class="st">Status</th></tr></thead>
+<tbody>
+<tr class="sel"><td>CZV</td><td class="num">150 <span class="u">mg/l</span></td><td class="src">p.7 · 3.2.1</td><td class="st"><span class="wvc-chip wvc-chip--green">Beoordeeld</span></td></tr>
+<tr><td>Stikstof totaal</td><td class="num">10 <span class="u">mg/l</span></td><td class="src">p.7 · 3.2.1</td><td class="st"><span class="wvc-chip wvc-chip--blue">Geëxtraheerd</span></td></tr>
+<tr><td>Zink</td><td class="num">0,5 <span class="u">mg/l</span></td><td class="src">p.7 · 3.2.1</td><td class="st"><span class="wvc-chip wvc-chip--blue">Geëxtraheerd</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="wvc-dc wvc-panel">
+<div class="wvc-ph"><span>KRW &amp; actualisatie</span><span>Ter beoordeling</span></div>
+<ul class="wvc-krw">
+<li><div class="wvc-krw__top"><span class="wvc-krw__t">Relevante stoffen beoordelen</span><span class="wvc-chip wvc-chip--amber">Nader onderzoek</span></div><p>Onderzoeken of alle voor de lozing relevante stoffen voldoende in beeld zijn.</p><p class="wvc-krw__ref">p.7 · vs. 3.2.1</p></li>
+<li><div class="wvc-krw__top"><span class="wvc-krw__t">Bemonsteringsfrequentie beoordelen</span><span class="wvc-chip wvc-chip--amber">Nader onderzoek</span></div><p>Vergunning schrijft jaarlijkse bemonstering voor. Beoordelen of deze frequentie nog passend is.</p><p class="wvc-krw__ref">p.9 · vs. 3.4</p></li>
+<li><div class="wvc-krw__top"><span class="wvc-krw__t">KRW-toetsing voorbereiden</span><span class="wvc-chip wvc-chip--grey">Aanvullende gegevens</span></div><p>Gegevens over ontvangend water en relevante waterkwaliteitsnormen zijn nodig.</p><p class="wvc-krw__ref wvc-krw__ref--miss">ontbreekt in dossier</p></li>
+</ul>
+</div>
+</div>
+</div>
+<figcaption class="wvc-foot"><span>Signaleringen ter beoordeling door een deskundige. Geen automatische conclusie over KRW.</span><span>Fictieve demonstratiegegevens</span></figcaption>
+</figure>
+</section>
+<section class="band band--dark" aria-labelledby="wvc-op-title">
+<div class="container wt-deliver wvc-deliver">
+<div class="wt-deliver__text">
+<p class="eyebrow">Wat levert het op?</p>
+<h2 class="h2" id="wvc-op-title">Van tientallen pagina's vergunningtekst naar <span>gericht inzicht in wat nodig is voor vergunningactualisatie en KRW-beoordeling.</span></h2>
+<ul class="wt-checks">
+<li><span class="wt-checks__icon"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><span><strong>Minder handmatig werk</strong> Vergunningen automatisch uitlezen en voorschriften, stoffen en lozingseisen overzichtelijk verzamelen.</span></li>
+<li><span class="wt-checks__icon"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><span><strong>Inzicht in KRW-aandachtspunten</strong> Signaleer welke lozingen en voorschriften mogelijk nader moeten worden beoordeeld in het kader van de KRW.</span></li>
+<li><span class="wt-checks__icon"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><span><strong>Gericht actualiseren</strong> Prioriteer vergunningen die aandacht verdienen en krijg inzicht in benodigde vervolgstappen.</span></li>
+</ul>
+<a class="btn btn--primary" href="../contact/">Bespreek uw KRW-opgave</a>
+</div>
+<div class="wt-deliver__photo"><img src="../assets/img/lozingspijp-800.60f09c25.webp" srcset="../assets/img/lozingspijp-800.60f09c25.webp 800w, ../assets/img/lozingspijp-1200.a5a4cd8e.webp 1200w, ../assets/img/lozingspijp-1600.653eccbf.webp 1600w" sizes="(min-width: 1880px) 764px, (min-width: 1600px) 684px, (min-width: 1460px) 564px, (min-width: 1280px) calc(51.9vw - 148px), (min-width: 1000px) calc(52.6vw - 200px), (min-width: 601px) 82vw, calc(94vw - 40px)" alt="Afvalwater stroomt uit een lozingspijp" width="1600" height="1067" loading="lazy" decoding="async"></div>
+</div>
+</section>
+<section class="band" id="hoe-werkt-het" aria-labelledby="wvc-hoe-title">
+<div class="container">
+<p class="eyebrow">Hoe werkt het?</p>
+<h2 class="h2" id="wvc-hoe-title">Drie stappen van vergunning naar inzicht.</h2>
+<ol class="wvc-stages">
+<li class="wvc-stage">
+<div class="wvc-stage__vis wvc-stage__vis--1" aria-hidden="true">
+<div class="wvc-s-sheet s3"><i class="t"></i><i></i><i></i><i class="s"></i></div>
+<div class="wvc-s-sheet s2"><i class="t"></i><i></i><i></i><i class="s"></i></div>
+<div class="wvc-s-sheet s1"><span class="wvc-s-pdf">PDF</span><i class="t"></i><i></i><i></i><i></i><i class="s"></i><i></i><i class="s"></i><span class="wvc-s-yr">2009</span></div>
+</div>
+<div class="wvc-stage__cap"><span class="wvc-stage__n">1</span><h3>Upload vergunningen</h3><p>Voeg bestaande watervergunningen en wijzigingsbesluiten toe.</p></div>
+</li>
+<li class="wvc-stage-arrow" aria-hidden="true"><span></span></li>
+<li class="wvc-stage">
+<div class="wvc-stage__vis wvc-stage__vis--2" aria-hidden="true">
+<div class="wvc-s-page"><i class="t"></i><i></i><i class="s"></i><i class="hl"></i><i class="hl s"></i><i></i><i class="hla s"></i><i></i><i class="s"></i></div>
+<div class="wvc-s-pills">
+<span class="wvc-s-pill">CZV <b>150</b> mg/l</span>
+<span class="wvc-s-pill">Stikstof totaal <b>10</b> mg/l</span>
+<span class="wvc-s-pill">Zink <b>0,5</b> mg/l</span>
+<span class="wvc-s-pill wvc-s-pill--a">3.4 · jaarlijkse bemonstering</span>
+</div>
+</div>
+<div class="wvc-stage__cap"><span class="wvc-stage__n">2</span><h3>Automatische analyse</h3><p>De applicatie brengt voorschriften, stoffen en lozingseisen overzichtelijk in kaart.</p></div>
+</li>
+<li class="wvc-stage-arrow" aria-hidden="true"><span></span></li>
+<li class="wvc-stage">
+<div class="wvc-stage__vis wvc-stage__vis--3" aria-hidden="true">
+<div class="wvc-s-result">
+<p class="wvc-s-result__h">Industriële lozing A</p>
+<div class="wvc-s-kpis"><span><b>42</b>voorschriften</span><span><b class="amber">6</b>aandacht</span><span><b class="red">3</b>ontbrekend</span></div>
+<div class="wvc-s-row"><span>Relevante stoffen</span><span class="wvc-chip wvc-chip--amber">Nader onderzoek</span></div>
+<div class="wvc-s-row"><span>Bemonsteringsfrequentie</span><span class="wvc-chip wvc-chip--amber">Nader onderzoek</span></div>
+<div class="wvc-s-row"><span>Ontvangend water</span><span class="wvc-chip wvc-chip--grey">Aanvullende gegevens</span></div>
+</div>
+</div>
+<div class="wvc-stage__cap"><span class="wvc-stage__n">3</span><h3>Bereid de KRW-beoordeling voor</h3><p>Bekijk mogelijke actualisatiepunten en ontbrekende gegevens, inclusief verwijzingen naar de vergunning.</p></div>
+</li>
+</ol>
+</div>
+</section>
+<section class="band band--dark" id="contact" aria-labelledby="wvc-contact-title">
+<div class="container">
+<div class="wvc-contact__grid">
+<div class="wvc-contact__intro">
+<p class="eyebrow">Contact</p>
+<h2 class="h2" id="wvc-contact-title">Uw watervergunningen KRW-proof maken?</h2>
+<p class="sub">Benieuwd hoe de Watervergunningchecker kan ondersteunen bij uw vergunningactualisatie of KRW-opgave? We denken graag met u mee over de mogelijkheden voor uw organisatie.</p>
+<div class="contact-rows wvc-contact__rows">
+<a class="contact-row" href="mailto:info@aquaware.nl"><span class="contact-card__icon"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg></span><span class="contact-row__txt"><span class="contact-card__label">Mail ons direct</span><span class="contact-row__val">info@aquaware.nl</span></span><span class="contact-row__go" aria-hidden="true"></span></a>
+<a class="contact-row" href="../contact/"><span class="contact-card__icon"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></svg></span><span class="contact-row__txt"><span class="contact-card__label">Bespreek de mogelijkheden</span><span class="contact-row__val">Plan een kennismaking</span></span><span class="contact-row__go" aria-hidden="true"></span></a>
+</div>
+</div>
+<form class="contact-form wvc-form" novalidate data-contact data-subject="Watervergunningchecker" action="mailto:info@aquaware.nl?subject=Watervergunningchecker" method="post" enctype="text/plain">
+<h3 class="contact-form__title">Bespreek uw vergunningactualisatie of KRW-opgave</h3>
+<div class="form-row">
+<div class="form-field"><label for="wvc-naam">Naam</label><input id="wvc-naam" aria-describedby="wvc-naam-error" name="naam" type="text" autocomplete="name" placeholder="Uw naam" required><p class="field-error" id="wvc-naam-error" hidden></p></div>
+<div class="form-field"><label for="wvc-email">E-mailadres</label><input id="wvc-email" aria-describedby="wvc-email-error" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="naam@organisatie.nl" required><p class="field-error" id="wvc-email-error" hidden></p></div>
+</div>
+<div class="form-field"><label for="wvc-organisatie">Organisatie <span class="opt">optioneel</span></label><input id="wvc-organisatie" name="organisatie" type="text" autocomplete="organization" placeholder="Waterschap, omgevingsdienst, provincie…"></div>
+<div class="form-field"><label for="wvc-bericht">Bericht <span class="opt">optioneel</span></label><textarea id="wvc-bericht" name="vraag" rows="4" placeholder="Wij willen graag bespreken hoe de Watervergunningchecker kan ondersteunen bij onze vergunningactualisatie."></textarea></div>
+<div class="contact-form__foot">
+<p class="contact-form__note">Uw aanvraag wordt als e-mail aan info@aquaware.nl klaargezet in uw e-mailprogramma. We gebruiken uw gegevens alleen om contact met u op te nemen.</p>
+<button class="btn btn--primary" type="submit">Verstuur aanvraag</button>
+</div>
+<p class="field-note field-status" data-contact-status aria-live="polite"></p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<form class="footer-news" novalidate data-newsletter data-subject="Aanmelding nieuwsbrief" action="mailto:info@aquaware.nl?subject=Aanmelding%20nieuwsbrief" method="post" enctype="text/plain">
+<div>
+<p class="eyebrow footer-news__label">Nieuwsbrief</p>
+<h2>Blijf op de hoogte van industriële lozingen, PFAS en de Werktool.</h2>
+<p>Een paar keer per jaar, alleen als er iets te melden is.</p>
+</div>
+<div>
+<label class="sr-only" for="newsletter-email">E-mailadres</label>
+<div class="field">
+<input id="newsletter-email" aria-describedby="newsletter-email-error" type="email" name="email" placeholder="naam@organisatie.nl" autocomplete="email" spellcheck="false" required>
+<button class="btn btn--primary" type="submit">Aanmelden</button>
+</div>
+<p class="field-error" id="newsletter-email-error" hidden></p>
+<p class="field-note">Geen spam, afmelden kan altijd.</p>
+<p class="field-note field-status" data-newsletter-status aria-live="polite"></p>
+</div>
+</form>
+<div class="footer-main">
+<div class="footer-brand">
+<a href="../" aria-label="AquaWare, naar de homepage"><img src="../assets/img/logo-full.4e59128c.webp" srcset="../assets/img/logo-full-240.72948910.webp 240w, ../assets/img/logo-full-480.20c2af3a.webp 480w, ../assets/img/logo-full.4e59128c.webp 640w" sizes="235px" alt="AquaWare" width="640" height="120" loading="lazy"></a>
+<p>Software en specialistische analyses voor overheden die vervuilingsbronnen vinden, prioriteren en opvolgen.</p>
+<p class="footer-cities">Rotterdam · Antwerpen</p>
+</div>
+<nav class="footer-col" aria-labelledby="f-producten"><h2 id="f-producten">Producten</h2><ul>
+<li><a href="../werktool/">Werktool indirecte lozingen</a></li><li><a href="../watervergunningchecker/">Watervergunningchecker</a></li><li><a href="../contact/?onderwerp=agro">Agro-Hotspottool</a></li><li><a href="../contact/?onderwerp=pfas">PFAS-massabalans</a></li></ul></nav>
+<nav class="footer-col" aria-labelledby="f-diensten"><h2 id="f-diensten">Diensten</h2><ul>
+<li><a href="../waterdata/">Waterdata &amp; analyse</a></li><li><a href="../security/">Security &amp; privacy</a></li><li><a href="../praktijk/">Praktijk</a></li></ul></nav>
+<nav class="footer-col" aria-labelledby="f-kennis"><h2 id="f-kennis">Kennis</h2><ul>
+<li><a href="../kennis/">Kennisbank</a></li><li><a href="../kennis/rekenkamer/">Rekenkamer-analyse</a></li><li><a href="../over/">Over AquaWare</a></li></ul></nav>
+<nav class="footer-col" aria-labelledby="f-contact"><h2 id="f-contact">Contact</h2><ul>
+<li><a href="../contact/">Plan een kennismaking</a></li><li><a href="mailto:info@aquaware.nl">info@aquaware.nl</a></li><li><a href="https://www.linkedin.com/company/aquaware" rel="noopener">LinkedIn</a></li></ul></nav>
+</div>
+<div class="footer-bottom">
+<span>© 2026 AquaWare BV</span>
+<div class="footer-bottom__end">
+<nav aria-label="Juridisch">
+<a href="../privacy/">Privacybeleid</a>
+<a href="../voorwaarden/">Algemene voorwaarden</a>
+</nav>
+<div class="lang-switch" role="group" aria-label="Taal"><a href="./" hreflang="nl" lang="nl" aria-current="true" title="Nederlands" aria-label="NL, Nederlands">NL</a><a href="../en/watervergunningchecker/" hreflang="en" lang="en" title="English" aria-label="EN, English">EN</a></div>
+</div>
+</div>
+</div>
+</footer>
+<script src="../assets/js/site.57f85d64.js"></script>
+</body>
+</html>
