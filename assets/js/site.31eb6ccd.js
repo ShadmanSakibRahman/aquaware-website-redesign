@@ -15,7 +15,7 @@ toggle.addEventListener('click',function(){setOpen(!header.classList.contains('i
 document.addEventListener('keydown',function(e){
 if(e.key==='Escape'&&header.classList.contains('is-open')){setOpen(false);toggle.focus();}
 });
-window.matchMedia('(min-width: 1200px)').addEventListener('change',function(e){if(e.matches)setOpen(false);});
+window.matchMedia('(min-width: 1100px)').addEventListener('change',function(e){if(e.matches)setOpen(false);});
 }
 document.querySelectorAll('.mock').forEach(function(mock){
 var stage=mock.querySelector('.mock__stage');
@@ -63,6 +63,20 @@ if(input.required&&!v)return MSG[input.name];
 if(input.type==='email'&&v&&!EMAIL.test(v))return MSG.emailBad;
 return'';
 };
+var opening=function(status){
+if(!status)return;
+status.textContent=OPENING;
+if(!(navigator.clipboard&&window.isSecureContext))return;
+var copy=document.createElement('button');
+copy.type='button';
+copy.className='copy-mail';
+copy.textContent=EN?'Copy address':'Kopieer adres';
+copy.addEventListener('click',function(){
+navigator.clipboard.writeText('info@aquaware.nl').then(function(){copy.textContent=EN?'Address copied':'Adres gekopieerd';},function(){});
+});
+status.appendChild(document.createTextNode(' '));
+status.appendChild(copy);
+};
 var watch=function(input){
 input.addEventListener('input',function(){if(input.getAttribute('aria-invalid')==='true')setError(input,check(input));});
 input.addEventListener('blur',function(){if(input.value.trim())setError(input,check(input));});
@@ -75,8 +89,7 @@ e.preventDefault();
 var text=check(email);
 setError(email,text);
 if(text){email.focus();return;}
-var status=form.querySelector('[data-newsletter-status]');
-if(status)status.textContent=OPENING;
+opening(form.querySelector('[data-newsletter-status]'));
 location.href='mailto:info@aquaware.nl?subject='+encodeURIComponent(form.dataset.subject||(EN?'Newsletter sign-up':'Aanmelding nieuwsbrief'))+
 '&body='+encodeURIComponent(email.value.trim());
 });
@@ -109,18 +122,64 @@ if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(url
 else fail();
 });
 });
+var COUNTRIES=('ADAEAFAGAIALAMAOAQARASATAUAWAXAZBABBBDBEBFBGBHBIBJBLBMBNBOBQBRBSBTBVBWBYBZCACCCDCFCGCHCICKCLCMCNCOCRCU'+
+'CVCWCXCYCZDEDJDKDMDODZECEEEGEHERESETFIFJFKFMFOFRGAGBGDGEGFGGGHGIGLGMGNGPGQGRGSGTGUGWGYHKHMHNHRHTHUIDIEILIMINIO'+
+'IQIRISITJEJMJOJPKEKGKHKIKMKNKPKRKWKYKZLALBLCLILKLRLSLTLULVLYMAMCMDMEMFMGMHMKMLMMMNMOMPMQMRMSMTMUMVMWMXMYMZNANC'+
+'NENFNGNINLNONPNRNUNZOMPAPEPFPGPHPKPLPMPNPRPSPTPWPYQARERORSRURWSASBSCSDSESGSHSISJSKSLSMSNSOSRSSSTSVSXSYSZTCTDTF'+
+'TGTHTJTKTLTMTNTOTRTTTVTWTZUAUGUMUSUYUZVAVCVEVGVIVNVUWFWSXKYEYTZAZMZW').match(/../g);
+var countryName=(function(){
+try{var names=new Intl.DisplayNames([EN?'en':'nl'],{type:'region'});return function(c){return names.of(c);};}
+catch(e){return function(c){return c;};}
+})();
+var TOO_FAST=EN?'One moment, please: send the form again in a few seconds.':'Een ogenblik: verstuur het formulier over een paar seconden opnieuw.';
 document.querySelectorAll('[data-contact]').forEach(function(form){
-var pilot={agro:'Agro',pfas:'PFAS'}[(new URLSearchParams(location.search).get('onderwerp')||'').toLowerCase()];
-if(pilot)form.querySelectorAll('input[name=onderwerp]').forEach(function(r){r.checked=/pilot/i.test(r.value)&&r.value.indexOf(pilot)>-1;});
+var opened=Date.now();
+var params=new URLSearchParams(location.search);
+var topics=[].slice.call(form.querySelectorAll('input[name=onderwerp]'));
+var topic=function(key){return topics.filter(function(r){return r.dataset.topic===key;})[0];};
+var asked=topic((params.get('onderwerp')||'').toLowerCase());
+if(asked)asked.checked=true;
+var org=form.elements.organisatie,typeField=form.querySelector('[data-after-organisation]');
+if(org&&typeField){
+var showType=function(){if(org.value.trim())typeField.hidden=false;};
+typeField.hidden=true;
+showType();
+org.addEventListener('input',showType);
+}
+var land=form.elements.land,landField=form.querySelector('[data-country]');
+if(land&&landField){
+var code=(params.get('land')||'').toUpperCase(),named=COUNTRIES.indexOf(code)>-1;
+var order=window.Intl&&Intl.Collator?new Intl.Collator(EN?'en':'nl').compare:function(a,b){return a<b?-1:1;};
+land.textContent='';
+COUNTRIES.map(function(c){return[c,countryName(c)];})
+.sort(function(a,b){return order(a[1],b[1]);})
+.forEach(function(c){land.add(new Option(c[1],c[0]));});
+land.value=named?code:'NL';
+var international=topic('internationaal');
+var showLand=function(){landField.hidden=!(named||(international&&international.checked));};
+topics.forEach(function(r){r.addEventListener('change',showLand);});
+showLand();
+var question=form.elements.vraag;
+if(named&&question&&!question.value)question.value=(EN?'Enquiry for ':'Aanvraag voor ')+countryName(code)+':\n';
+}
 var required=[].slice.call(form.querySelectorAll('input[required]'));
 required.forEach(watch);
 var label=function(name){
 var el=form.elements[name];
 if(!el)return name;
-var field=(el.length&&el[0])?el[0].closest('fieldset').querySelector('legend'):form.querySelector('label[for="'+el.id+'"]');
+var field=el.tagName?form.querySelector('label[for="'+el.id+'"]'):el[0].closest('fieldset').querySelector('legend');
 return field?field.firstChild.textContent.trim():name;
 };
-var value=function(name){var el=form.elements[name];return el?el.value.trim():'';};
+var value=function(name){
+var el=form.elements[name];
+if(!el)return'';
+if(el.tagName==='SELECT')return el.value?el.options[el.selectedIndex].text.trim():'';
+return el.value.trim();
+};
+var shown=function(name){
+var el=form.elements[name],field=el&&(el.tagName?el:el[0]).closest('.form-field');
+return!!el&&!(field&&field.hidden);
+};
 form.addEventListener('submit',function(e){
 e.preventDefault();
 var first=null;
@@ -130,13 +189,16 @@ setError(input,text);
 if(text&&!first)first=input;
 });
 if(first){first.focus();return;}
-var topic=value('onderwerp');
-var lines=['naam','organisatie','email','onderwerp'].filter(function(n){return form.elements[n];})
+var status=form.querySelector('[data-contact-status]');
+if(form.elements.website&&form.elements.website.value)return;
+if(Date.now()-opened<2500){if(status)status.textContent=TOO_FAST;return;}
+var subject=value('onderwerp');
+var lines=['naam','organisatie','organisatietype','email','onderwerp','land']
+.filter(function(n){return shown(n)&&(n!=='organisatietype'||value(n));})
 .map(function(n){return label(n)+': '+value(n);});
 var body=lines.join('\n')+'\n\n'+value('vraag');
-var status=form.querySelector('[data-contact-status]');
-if(status)status.textContent=OPENING;
-location.href='mailto:info@aquaware.nl?subject='+encodeURIComponent((form.dataset.subject||'Kennismaking')+(topic?' · '+topic:''))+
+opening(status);
+location.href='mailto:info@aquaware.nl?subject='+encodeURIComponent((form.dataset.subject||'Kennismaking')+(subject?' · '+subject:''))+
 '&body='+encodeURIComponent(body);
 });
 });
@@ -165,12 +227,12 @@ var dots=[
 {p:[34,50],c:[26,30],l:'H',name:'Coating Zuidkade',sbi:'22 · Rubber en kunststof',rwzi:'Lindevallei',lozing:'Indirect',krw:17,step:'Beoordelen'},
 {p:[40,41],c:[8,38],l:'H',name:'Galvano Rivierpark',sbi:'25 · Oppervlaktebehandeling',rwzi:'Lindevallei',lozing:'Indirect',krw:19,step:'Shortlist'},
 {p:[53.5,46],c:[24,46],l:'H',name:'Scheepsrep. Oosthaven',sbi:'30 · Overige transportmiddelen',rwzi:'Lindevallei',lozing:'Indirect',krw:18,step:'Bemonstering'},
-{p:[32.5,62],c:[10,54],l:'H',name:'Kunststofverwerking Delta',sbi:'22 · Rubber en kunststof',rwzi:'Oosterweide',lozing:'Indirect',krw:14,step:'Beoordelen'},
-{p:[44,80],c:[84,64],l:'H',name:'Lakspuiterij Meander',sbi:'20 · Chemische producten',rwzi:'Zuidbroek',lozing:'Indirect',krw:12,step:'Beoordelen'},
-{p:[52.5,76],c:[90,78],l:'H',name:'Tankcleaning Havenmond',sbi:'52 · Opslag en dienstverlening',rwzi:'Oosterweide',lozing:'Direct',krw:16,step:'Bedrijfsbezoek'},
+{p:[32.5,62],c:[10,54],l:'H',name:'Kunststof Delta',sbi:'22 · Rubber en kunststof',rwzi:'Oosterweide',lozing:'Indirect',krw:14,step:'Beoordelen'},
+{p:[44,80],c:[84,64],l:'M',name:'Lakspuiterij Meander',sbi:'20 · Chemische producten',rwzi:'Zuidbroek',lozing:'Indirect',krw:12,step:'Beoordelen'},
+{p:[52.5,76],c:[90,78],l:'L',name:'Tankcleaning Havenmond',sbi:'52 · Opslag en dienstverlening',rwzi:'Oosterweide',lozing:'Direct',krw:16,step:'Bedrijfsbezoek'},
 {p:[9,30],c:[32,17],l:'M',name:'Tandtechniek Noordwal',sbi:'32 · Overige goederen',rwzi:'Noorderhaven',lozing:'Indirect',krw:6,step:'Uitgevraagd'},
-{p:[33,79],c:[80,86],l:'M',name:'Autoschade De Brug',sbi:'45 · Reparatie van auto’s',rwzi:'Oosterweide',lozing:'Indirect',krw:5,step:'Shortlist'},
-{p:[46,57],c:[28,60],l:'M',name:'Textielveredeling Waalzicht',sbi:'13 · Textiel',rwzi:'Lindevallei',lozing:'Direct',krw:8,step:'Beoordelen'},
+{p:[33,79],c:[80,86],l:'M',name:'Autoschade De Brug',sbi:'45 · Reparatie van auto’s',rwzi:'Oosterweide',lozing:'Indirect',krw:5,step:'Beoordelen'},
+{p:[46,57],c:[28,60],l:'L',name:'Textielveredeling Waalzicht',sbi:'13 · Textiel',rwzi:'Lindevallei',lozing:'Direct',krw:8,step:'Beoordelen'},
 {p:[6,40],c:[6,61],l:'L',name:'Wasserij Hofland',sbi:'96 · Wassen en stomen',rwzi:'Noorderhaven',lozing:'Indirect',krw:2,step:'Niet nodig'},
 {p:[37.5,68],c:[88,95],l:'L',name:'Drukkerij Kanaalzicht',sbi:'18 · Drukkerijen',rwzi:'Oosterweide',lozing:'Indirect',krw:1,step:'Niet nodig'}
 ];
@@ -371,49 +433,168 @@ onView(shot,.35,function(){if(away){away=false;play();}});
 onLeave(shot,function(){if(!away){away=true;hide();}});
 });
 });
-document.querySelectorAll('.proof__inner').forEach(function(box){
-var parts=box.querySelectorAll('[data-area]');
-var light=function(areas){
-areas=areas?[].concat(areas):[];
-parts.forEach(function(el){
-var mine=el.dataset.area.split(' ');
-el.classList.toggle('is-active',areas.some(function(a){return mine.indexOf(a)>-1;}));
-});
-};
-var proof=box.closest('.proof'),timers=[];
-var stopTour=function(){timers.forEach(clearTimeout);timers=[];if(proof)proof.classList.remove('is-touring');};
-parts.forEach(function(el){
-var a=el.dataset.area.split(' ')[0];
-el.addEventListener('mouseenter',function(){stopTour();light(a);});
-el.addEventListener('mouseleave',function(){light(null);});
-el.addEventListener('focusin',function(){stopTour();light(a);});
-el.addEventListener('focusout',function(){light(null);});
-});
-var map=box.querySelector('.nl-map'),list=box.querySelector('.proof__partners');
-if(!proof||!map||!list||!('IntersectionObserver'in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-var pins=[].slice.call(map.querySelectorAll('.nl-pin'));
-pins.forEach(function(p,i){p.style.setProperty('--i',i);});
-[].forEach.call(list.children,function(li,i){li.style.setProperty('--i',i);});
-var steps=pins.map(function(p){return p.dataset.area.split(' ');});
-var tour=function(){
-stopTour();proof.classList.add('is-touring');
-steps.forEach(function(s,i){timers.push(setTimeout(function(){light(s);},i*1100));});
-timers.push(setTimeout(function(){light(null);proof.classList.remove('is-touring');},steps.length*1100+300));
-};
-var reveal=function(el,ms,then){
+document.querySelectorAll('.waar-map').forEach(function(map){
+if(!('IntersectionObserver'in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var away=false,done;
-var hide=function(){clearTimeout(done);el.classList.remove('is-in');el.classList.add('is-ready');if(el===map){stopTour();light(null);}};
+var hide=function(){clearTimeout(done);map.classList.remove('is-in');map.classList.add('is-ready');};
 var play=function(){
-hide();el.offsetWidth;
-requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('is-in');});});
-done=setTimeout(function(){el.classList.remove('is-ready','is-in');if(then)then();},ms);
+hide();map.offsetWidth;
+requestAnimationFrame(function(){requestAnimationFrame(function(){map.classList.add('is-in');});});
+done=setTimeout(function(){map.classList.remove('is-ready','is-in');},2000);
 };
-below(el,.9,function(b){if(b){away=true;hide();}});
-onView(el,.4,function(){if(away){away=false;play();}});
-onLeave(el,function(){if(!away){away=true;hide();}});
+below(map,.9,function(b){if(b){away=true;hide();}});
+onView(map,.4,function(){if(away){away=false;play();}});
+onLeave(map,function(){if(!away){away=true;hide();}});
+});
+document.querySelectorAll('.globe-pick select').forEach(function(select){
+COUNTRIES.map(function(c){return[c,countryName(c)];})
+.sort(function(a,b){return a[1].localeCompare(b[1],EN?'en':'nl');})
+.forEach(function(c){select.add(new Option(c[1],c[0]));});
+});
+document.querySelectorAll('[data-globe]').forEach(function(box){
+var canvas=box.querySelector('canvas'),ctx=canvas.getContext&&canvas.getContext('2d');
+var tip=box.querySelector('.globe__tip'),pop=box.querySelector('.globe__pop');
+var popName=pop.querySelector('.globe__name'),popGo=pop.querySelector('a'),base=popGo.getAttribute('href');
+if(!ctx)return;
+var D=Math.PI/180,OFFICE=[4.40,51.22];
+var dots=[],codes=[],NL=-1;
+var lon0=-8,lat0=34,spin=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var size=0,ratio=1,hover=-1,picked=-1,frame=0,inView=false,loaded=false;
+var drag=null;
+var fit=function(){
+ratio=Math.min(window.devicePixelRatio||1,2);
+size=box.clientWidth;
+canvas.width=Math.round(size*ratio);canvas.height=Math.round(size*ratio);
+draw();
 };
-reveal(list,1400);
-reveal(map,2400,tour);
+var project=function(d){
+var dl=d.lon-lon0*D,cl=Math.cos(dl),s0=Math.sin(lat0*D),c0=Math.cos(lat0*D);
+return{x:d.cosLat*Math.sin(dl),y:c0*d.sinLat-s0*d.cosLat*cl,z:s0*d.sinLat+c0*d.cosLat*cl};
+};
+var draw=function(){
+if(!size)return;
+var r=size/2-2,cx=size/2,cy=size/2,dot=Math.max(1.05,size/340);
+ctx.setTransform(ratio,0,0,ratio,0,0);
+ctx.clearRect(0,0,size,size);
+var g=ctx.createRadialGradient(cx-r*.3,cy-r*.35,r*.1,cx,cy,r);
+g.addColorStop(0,'#ffffff');g.addColorStop(1,'#e6ebf4');
+ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.fillStyle=g;ctx.fill();
+ctx.lineWidth=1;ctx.strokeStyle='#d6dce7';ctx.stroke();
+var groups={grey:[],nl:[],lit:[]};
+for(var i=0;i<dots.length;i++){
+var p=project(dots[i]);
+if(p.z<=0.02){dots[i].sx=null;continue;}
+dots[i].sx=cx+r*p.x;dots[i].sy=cy-r*p.y;
+var k=dots[i].c;
+(k===hover||k===picked?groups.lit:k===NL?groups.nl:groups.grey).push([dots[i].sx,dots[i].sy,dot*(.55+.45*p.z)]);
+}
+[['grey','#aeb8c9'],['lit','#5b7ff0'],['nl','#1a3fd6']].forEach(function(set){
+ctx.beginPath();
+groups[set[0]].forEach(function(q){ctx.moveTo(q[0]+q[2],q[1]);ctx.arc(q[0],q[1],q[2],0,2*Math.PI);});
+ctx.fillStyle=set[1];ctx.fill();
+});
+var o=project({lon:OFFICE[0]*D,sinLat:Math.sin(OFFICE[1]*D),cosLat:Math.cos(OFFICE[1]*D)});
+if(o.z>0.05){
+var ox=cx+r*o.x,oy=cy-r*o.y;
+ctx.beginPath();ctx.arc(ox,oy,5.5,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
+ctx.beginPath();ctx.arc(ox,oy,4,0,2*Math.PI);ctx.fillStyle='#10141b';ctx.fill();
+}
+};
+var tick=function(){
+frame=0;
+if(!spin||!inView||drag)return;
+lon0+=0.06;draw();
+frame=requestAnimationFrame(tick);
+};
+var run=function(){if(!frame&&spin&&inView&&loaded)frame=requestAnimationFrame(tick);};
+var stopSpin=function(){spin=false;if(frame)cancelAnimationFrame(frame);frame=0;};
+var countryAt=function(x,y){
+var best=-1,dist=81;
+for(var i=0;i<dots.length;i++){
+if(dots[i].sx===null||dots[i].sx===undefined)continue;
+var dx=dots[i].sx-x,dy=dots[i].sy-y,dd=dx*dx+dy*dy;
+if(dd<dist){dist=dd;best=dots[i].c;}
+}
+return best;
+};
+var point=function(e){var b=canvas.getBoundingClientRect();return{x:e.clientX-b.left,y:e.clientY-b.top};};
+var place=function(el,x,y){
+var w=el.offsetWidth/2,h=el.offsetHeight+14;
+el.style.left=Math.max(w,Math.min(size-w,x))+'px';
+el.style.top=Math.max(h,y)+'px';
+};
+var name=function(k){return countryName(codes[k]);};
+var showTip=function(k,x,y){
+if(k<0||k===picked){tip.hidden=true;return;}
+tip.textContent=name(k);tip.hidden=false;place(tip,x,y);
+};
+var open=function(k,x,y){
+picked=k;tip.hidden=true;
+if(k<0){pop.hidden=true;draw();return;}
+popName.textContent=name(k);
+popGo.textContent=(EN?'Inquire for ':'Vraag aan voor ')+name(k);
+popGo.setAttribute('href',base+'&land='+codes[k]);
+pop.hidden=false;place(pop,x,y);draw();
+};
+canvas.addEventListener('pointerdown',function(e){
+stopSpin();
+drag={x:e.clientX,y:e.clientY,lon:lon0,lat:lat0,moved:false,id:e.pointerId,touch:e.pointerType!=='mouse'};
+});
+canvas.addEventListener('pointermove',function(e){
+var pt=point(e);
+if(drag&&e.pointerId===drag.id){
+var dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+if(!drag.moved&&dx*dx+dy*dy>25){
+drag.moved=true;box.classList.add('is-dragging');tip.hidden=true;
+if(!drag.touch)canvas.setPointerCapture(e.pointerId);
+}
+if(drag.moved){
+var turn=180/size;
+lon0=drag.lon-dx*turn;
+if(!drag.touch)lat0=Math.max(-45,Math.min(70,drag.lat+dy*turn));
+draw();
+}
+return;
+}
+if(e.pointerType!=='mouse')return;
+stopSpin();
+var k=countryAt(pt.x,pt.y);
+if(k!==hover){hover=k;draw();}
+box.classList.toggle('is-hovering',k>=0);
+showTip(k,pt.x,pt.y);
+});
+var end=function(e){
+if(!drag||e.pointerId!==drag.id)return;
+var was=drag;drag=null;box.classList.remove('is-dragging');
+if(!was.moved&&e.type==='pointerup'){var pt=point(e);open(countryAt(pt.x,pt.y),pt.x,pt.y);}
+};
+canvas.addEventListener('pointerup',end);
+canvas.addEventListener('pointercancel',end);
+canvas.addEventListener('pointerleave',function(){if(hover>=0){hover=-1;draw();}tip.hidden=true;box.classList.remove('is-hovering');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden)open(-1);});
+document.addEventListener('pointerdown',function(e){if(!pop.hidden&&!box.contains(e.target))open(-1);});
+var load=function(){
+if(loaded||load.busy)return;
+load.busy=true;
+fetch(box.getAttribute('data-src')).then(function(r){return r.json();}).then(function(d){
+codes=d.c;NL=codes.indexOf('NL');
+var add=function(lon,lat,c){dots.push({lon:lon*D,sinLat:Math.sin(lat*D),cosLat:Math.cos(lat*D),c:c});};
+d.r.forEach(function(row){
+for(var j=2;j<row.length;j+=3)
+for(var n=0;n<row[j+1];n++)add(-180+(row[j]+n+.5)*row[1],row[0],row[j+2]);
+});
+d.x.forEach(function(e){add(e[0],e[1],e[2]);});
+loaded=true;fit();run();
+}).catch(function(){load.busy=false;});
+};
+if('IntersectionObserver'in window){
+new IntersectionObserver(function(es){if(es[0].isIntersecting)load();},{rootMargin:'400px 0px'}).observe(box);
+new IntersectionObserver(function(es){
+inView=es[0].isIntersecting;
+if(inView)run();else if(frame){cancelAnimationFrame(frame);frame=0;}
+}).observe(box);
+}else{inView=true;load();}
+window.addEventListener('resize',function(){if(loaded)fit();});
 });
 document.querySelectorAll('.wd-services').forEach(function(grid){
 if(!('IntersectionObserver'in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
@@ -466,9 +647,22 @@ below(cas,.8,function(b){if(b){away=true;hide();}});
 onView(cas,.35,function(){if(away){away=false;play();}});
 onLeave(cas,function(){if(!away){away=true;hide();}});
 });
+document.querySelectorAll('[data-det-map]').forEach(function(svg){
+var data=document.getElementById(svg.getAttribute('data-det-map')),layer=svg.querySelector('[data-points]');
+var points;
+try{points=JSON.parse(data.textContent);}catch(e){return;}
+points.slice().sort(function(a,b){return a[2]-b[2];}).forEach(function(p){
+var dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+dot.setAttribute('cx',(77.92*p[1]-258.2).toFixed(1));
+dot.setAttribute('cy',(6718.9-125.2*p[0]).toFixed(1));
+dot.setAttribute('r','4.6');
+dot.setAttribute('class','det-c--'+p[2]);
+layer.appendChild(dot);
+});
+});
 document.querySelectorAll('.closing').forEach(function(sec){
 if(!('IntersectionObserver'in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-[].forEach.call(sec.querySelectorAll(':scope > .container > *'),function(el,j){el.style.setProperty('--j',j);});
+[].forEach.call(sec.querySelectorAll(':scope > .container > :not(.closing__body), :scope .closing__body > *'),function(el,j){el.style.setProperty('--j',j);});
 var done;
 var hide=function(){clearTimeout(done);sec.classList.remove('is-in');sec.classList.add('is-ready');};
 var play=function(){
@@ -847,9 +1041,23 @@ d.my=PAD+d.v*(H-2*PAD);
 labels.forEach(function(l,k){l.style.left=piles[k].cx+'px';l.style.top=(piles[k].top-(narrow?32:40))+'px';});
 };
 var target=function(d,s){
-if(s===1)return[d.px,d.py,2.1*SCALE,PILE[d.pile]];
-if(s===2)return d.key?[d.mx,d.my,3.3*SCALE,BLUE]:[d.mx,d.my,1.9*SCALE,FAINT];
+if(s===0)return[d.mx,d.my,1.7*SCALE,FAINT];
+if(s===2)return[d.px,d.py,2.1*SCALE,PILE[d.pile]];
+if(s===3)return d.key?[d.mx,d.my,3.3*SCALE,BLUE]:[d.mx,d.my,1.9*SCALE,FAINT];
 return[d.mx,d.my,2.1*SCALE,DOT];
+};
+var SIGNAL_U=0.63;
+var drawSignal=function(){
+var x=PAD+SIGNAL_U*(W-2*PAD),y=PAD+riverY(SIGNAL_U)*(H-2*PAD),r=46*SCALE;
+var halo=ctx.createRadialGradient(x,y,0,x,y,r);
+halo.addColorStop(0,'rgba(229, 72, 77, '+0.34*land+')');
+halo.addColorStop(1,'rgba(229, 72, 77, 0)');
+ctx.fillStyle=halo;
+ctx.beginPath();ctx.arc(x,y,r,0,6.2832);ctx.fill();
+ctx.fillStyle='rgba(255, 255, 255, '+land+')';
+ctx.beginPath();ctx.arc(x,y,7*SCALE,0,6.2832);ctx.fill();
+ctx.fillStyle='rgba(229, 72, 77, '+land+')';
+ctx.beginPath();ctx.arc(x,y,5*SCALE,0,6.2832);ctx.fill();
 };
 var draw=function(){
 ctx.clearRect(0,0,W,H);
@@ -877,10 +1085,11 @@ ctx.lineWidth=3*SCALE;
 ctx.lineCap='round';
 ctx.stroke();
 }
+if(at===0&&land>0.01)drawSignal();
 for(var k=0;k<dots.length;k++){
 var d=dots[k];
 if(d.r<0.2)continue;
-if(d.key&&at===2&&d.r>2.4*SCALE){
+if(d.key&&at===3&&d.r>2.4*SCALE){
 ctx.fillStyle='rgba(26, 63, 214, 0.12)';
 ctx.beginPath();
 ctx.arc(d.x,d.y,d.r*2.6,0,6.2832);
@@ -918,9 +1127,9 @@ dots.forEach(function(d){
 var t=target(d,s);
 d.fx=d.x;d.fy=d.y;d.fr=d.r;d.fc=d.c.slice();
 d.tx=t[0];d.ty=t[1];d.tr=t[2];d.tc=t[3];
-d.delay=s===1?d.u*420:s===2?(d.key?380+d.near*1600:d.u*240):0;
+d.delay=s===2?d.u*420:s===3?(d.key?380+d.near*1600:d.u*240):0;
 });
-landFrom=land;landTo=s===1?0:1;
+landFrom=land;landTo=s===2?0:1;
 cancelAnimationFrame(raf);
 if(instant||stillMotion.matches){
 dots.forEach(function(d){d.x=d.tx;d.y=d.ty;d.r=d.tr;d.c=d.tc.slice();});
@@ -943,10 +1152,14 @@ var play=function(){
 stopAuto();
 fig.classList.add('is-auto');
 appear();
+var next=function(k){
 timer=setTimeout(function(){
-setStage(1);
-timer=setTimeout(function(){stopAuto();setStage(2);},HOLD[1]);
-},HOLD[0]);
+if(k===steps.length-1)stopAuto();
+setStage(k);
+if(k<steps.length-1)next(k+1);
+},HOLD[k-1]);
+};
+next(1);
 };
 steps.forEach(function(b,k){
 b.addEventListener('click',function(){stopAuto();setStage(k);});
