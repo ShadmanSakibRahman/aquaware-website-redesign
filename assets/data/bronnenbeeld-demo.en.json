@@ -1,0 +1,611 @@
+{
+  "waterbody": {
+    "name": "Lindewetering",
+    "note": "Fictional waterbody for demonstration purposes."
+  },
+  "substances": [
+    {
+      "id": "zink",
+      "name": "Zinc",
+      "exceedance_at": [
+        "M1",
+        "M2"
+      ]
+    },
+    {
+      "id": "koper",
+      "name": "Copper",
+      "exceedance_at": []
+    },
+    {
+      "id": "pfos",
+      "name": "PFOS",
+      "exceedance_at": [
+        "M2"
+      ]
+    },
+    {
+      "id": "imidacloprid",
+      "name": "Imidacloprid",
+      "exceedance_at": [
+        "M1"
+      ]
+    },
+    {
+      "id": "diclofenac",
+      "name": "Diclofenac",
+      "exceedance_at": []
+    }
+  ],
+  "categories": [
+    {
+      "id": "direct",
+      "label": "Direct industrial discharge",
+      "label_list": "Direct industrial discharges",
+      "colour": "#7A4FB5"
+    },
+    {
+      "id": "indirect",
+      "label": "Indirect industrial discharge",
+      "label_list": "Indirect industrial discharges",
+      "colour": "#2C7BB6"
+    },
+    {
+      "id": "rwzi",
+      "label": "WWTP and the wastewater chain",
+      "label_list": "WWTPs and the wastewater chain",
+      "colour": "#178A8A"
+    },
+    {
+      "id": "agri",
+      "label": "Agriculture and greenhouse horticulture",
+      "label_list": "Agriculture and greenhouse horticulture",
+      "colour": "#7C8A12"
+    },
+    {
+      "id": "urban",
+      "label": "Household and urban wastewater",
+      "label_list": "Household and urban wastewater",
+      "colour": "#B8477E"
+    },
+    {
+      "id": "historic",
+      "label": "Historical contamination",
+      "label_list": "Historical contamination",
+      "colour": "#8A6240"
+    },
+    {
+      "id": "upstream",
+      "label": "Upstream and other pathways",
+      "label_list": "Upstream and other pathways",
+      "colour": "#55657A"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "name": "WWTP North",
+      "category": "rwzi",
+      "activity": "Treatment of wastewater from the sewer system",
+      "connection": "Effluent outfall on the waterbody",
+      "pathway_label": "Effluent outfall on the waterbody",
+      "x": 500,
+      "y": 320,
+      "priority": "high",
+      "priority_reason": "High — documented relationship with zinc, copper, PFOS and diclofenac in the effluent, documented outfall on the waterbody, origin of the zinc and PFOS load uncertain.",
+      "substances": [
+        {
+          "id": "zink",
+          "level": "documented"
+        },
+        {
+          "id": "koper",
+          "level": "documented"
+        },
+        {
+          "id": "pfos",
+          "level": "documented"
+        },
+        {
+          "id": "diclofenac",
+          "level": "documented"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "Effluent measurements show zinc, copper, PFOS and diclofenac.",
+          "level": "documented"
+        },
+        {
+          "text": "The effluent outfall on the waterbody is documented.",
+          "level": "documented"
+        }
+      ],
+      "gaps": [
+        "Origin of the zinc and PFOS load in the effluent is uncertain"
+      ],
+      "action_id": "A1"
+    },
+    {
+      "id": "S2",
+      "name": "Metal processing site A",
+      "category": "indirect",
+      "activity": "Metal processing and surface treatment",
+      "connection": "connected to WWTP North",
+      "pathway_label": "Sewer → RWZI Noord",
+      "x": 360,
+      "y": 180,
+      "priority": "high",
+      "priority_reason": "High — possible relationship with zinc and copper, documented pathway to WWTP North, discharge data missing.",
+      "substances": [
+        {
+          "id": "zink",
+          "level": "possible"
+        },
+        {
+          "id": "koper",
+          "level": "possible"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "A possible relationship with zinc and copper, based on the activity.",
+          "level": "possible"
+        },
+        {
+          "text": "The pathway via the sewer to WWTP North is documented.",
+          "level": "documented"
+        }
+      ],
+      "gaps": [
+        "Discharge data missing"
+      ],
+      "action_id": "A2"
+    },
+    {
+      "id": "S3",
+      "name": "Surface treatment site C",
+      "category": "direct",
+      "activity": "Surface treatment of metals",
+      "connection": "Direct outfall on the waterbody",
+      "pathway_label": "Direct outfall",
+      "x": 700,
+      "y": 520,
+      "priority": "medium",
+      "priority_reason": "Medium — documented relationship with zinc (2021 measurements), possible relationship with PFOS, documented outfall, current measurement data missing.",
+      "substances": [
+        {
+          "id": "zink",
+          "level": "documented"
+        },
+        {
+          "id": "pfos",
+          "level": "possible"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "Zinc is documented in 2021 measurements.",
+          "level": "documented"
+        },
+        {
+          "text": "A possible relationship with PFOS.",
+          "level": "possible"
+        },
+        {
+          "text": "The direct outfall is documented.",
+          "level": "documented"
+        }
+      ],
+      "gaps": [
+        "Latest measurements date from 2021"
+      ],
+      "action_id": "A3"
+    },
+    {
+      "id": "S4",
+      "name": "Horticultural area South",
+      "category": "agri",
+      "activity": "Greenhouse horticulture",
+      "connection": "Possible drainage to the waterbody",
+      "pathway_label": "Run-off / drainage",
+      "x": 230,
+      "y": 540,
+      "priority": "medium",
+      "priority_reason": "Medium — possible relationship with imidacloprid, possible pathway via run-off and drainage, possible link with the observation at M1, targeted monitoring missing.",
+      "substances": [
+        {
+          "id": "imidacloprid",
+          "level": "possible"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "A possible relationship with imidacloprid.",
+          "level": "possible"
+        },
+        {
+          "text": "The pathway via run-off and drainage is possible.",
+          "level": "possible"
+        }
+      ],
+      "gaps": [
+        "Targeted monitoring at drainage points is missing"
+      ],
+      "action_id": "A4"
+    },
+    {
+      "id": "S5",
+      "name": "Historical industrial site B",
+      "category": "historic",
+      "activity": "Former industrial site",
+      "connection": "Possible pathway via groundwater",
+      "pathway_label": "Groundwater",
+      "x": 960,
+      "y": 220,
+      "priority": "medium",
+      "priority_reason": "Medium — possible relationship with zinc and PFOS, possible historical pathway via groundwater, the soil records have not been investigated further.",
+      "substances": [
+        {
+          "id": "zink",
+          "level": "possible"
+        },
+        {
+          "id": "pfos",
+          "level": "possible"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "A possible relationship with zinc and PFOS.",
+          "level": "possible"
+        },
+        {
+          "text": "A possible historical pathway via groundwater.",
+          "level": "possible"
+        }
+      ],
+      "gaps": [
+        "The soil records have not been investigated further"
+      ],
+      "action_id": "A5"
+    },
+    {
+      "id": "S6",
+      "name": "Residential area West",
+      "category": "urban",
+      "activity": "Household wastewater from a residential area",
+      "connection": "Combined sewer overflow to the waterbody",
+      "pathway_label": "Combined sewer overflow",
+      "x": 120,
+      "y": 260,
+      "priority": "low",
+      "priority_reason": "Low — possible relationship with diclofenac and zinc, documented pathway via the combined sewer overflow, the relationship is not yet supported by further data.",
+      "substances": [
+        {
+          "id": "diclofenac",
+          "level": "possible"
+        },
+        {
+          "id": "zink",
+          "level": "possible"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "A possible relationship with diclofenac and zinc.",
+          "level": "possible"
+        },
+        {
+          "text": "The pathway via the combined sewer overflow is documented.",
+          "level": "documented"
+        }
+      ],
+      "gaps": [
+        "The relationship with diclofenac and zinc is not yet supported by data"
+      ],
+      "action_id": null
+    },
+    {
+      "id": "S7",
+      "name": "Upstream inflow",
+      "category": "upstream",
+      "activity": "Inflow of water from upstream",
+      "connection": "Inflow from the upstream water manager",
+      "pathway_label": "Inflow",
+      "x": 1150,
+      "y": 390,
+      "priority": "low",
+      "priority_reason": "Low — demonstrated PFOS contribution from upstream monitoring, possible relationship with copper, documented inflow, coordination with the upstream water manager needed.",
+      "substances": [
+        {
+          "id": "pfos",
+          "level": "demonstrated"
+        },
+        {
+          "id": "koper",
+          "level": "possible"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "PFOS is demonstrated in upstream monitoring.",
+          "level": "demonstrated"
+        },
+        {
+          "text": "A possible relationship with copper.",
+          "level": "possible"
+        },
+        {
+          "text": "The inflow is documented.",
+          "level": "documented"
+        }
+      ],
+      "gaps": [
+        "Coordination with the upstream water manager is still needed"
+      ],
+      "action_id": "A7"
+    },
+    {
+      "id": "S8",
+      "name": "Industrial estate De Hoek",
+      "category": "indirect",
+      "activity": "Industrial estate with several companies",
+      "connection": "connected to WWTP North",
+      "pathway_label": "Sewer → RWZI Noord",
+      "x": 640,
+      "y": 160,
+      "priority": "medium",
+      "priority_reason": "Medium — possible relationship with copper and PFOS, documented pathway to WWTP North, no company data on substance use available.",
+      "substances": [
+        {
+          "id": "koper",
+          "level": "possible"
+        },
+        {
+          "id": "pfos",
+          "level": "possible"
+        }
+      ],
+      "evidence": [
+        {
+          "text": "A possible relationship with copper and PFOS.",
+          "level": "possible"
+        },
+        {
+          "text": "The pathway via the sewer to WWTP North is documented.",
+          "level": "documented"
+        }
+      ],
+      "gaps": [
+        "No company data on substance use available"
+      ],
+      "action_id": "A6"
+    }
+  ],
+  "pathways": [
+    {
+      "from": "S1",
+      "to": "water",
+      "documented": true
+    },
+    {
+      "from": "S2",
+      "to": "S1",
+      "documented": true
+    },
+    {
+      "from": "S3",
+      "to": "water",
+      "documented": true
+    },
+    {
+      "from": "S4",
+      "to": "water",
+      "documented": false
+    },
+    {
+      "from": "S5",
+      "to": "water",
+      "documented": false
+    },
+    {
+      "from": "S6",
+      "to": "water",
+      "documented": true
+    },
+    {
+      "from": "S7",
+      "to": "water",
+      "documented": true
+    },
+    {
+      "from": "S8",
+      "to": "S1",
+      "documented": true
+    }
+  ],
+  "monitoring": [
+    {
+      "id": "M1",
+      "x": 620,
+      "y": 395,
+      "note": "Monitoring point M1: exceedances of zinc and imidacloprid"
+    },
+    {
+      "id": "M2",
+      "x": 900,
+      "y": 385,
+      "note": "Monitoring point M2: exceedances of zinc and PFOS"
+    }
+  ],
+  "actions": [
+    {
+      "id": "A1",
+      "source": "S1",
+      "priority": "high",
+      "action": "Additional influent sampling per sub-catchment",
+      "reason": "Origin of the zinc and PFOS load in the effluent is uncertain",
+      "type": "sampling"
+    },
+    {
+      "id": "A2",
+      "source": "S2",
+      "priority": "high",
+      "action": "Permit review and information request",
+      "reason": "Possible substance relationship and incomplete discharge information",
+      "type": "permit"
+    },
+    {
+      "id": "A3",
+      "source": "S3",
+      "priority": "medium",
+      "action": "Current sampling at the outfall",
+      "reason": "Latest measurements date from 2021",
+      "type": "sampling"
+    },
+    {
+      "id": "A4",
+      "source": "S4",
+      "priority": "medium",
+      "action": "Targeted monitoring at drainage points",
+      "reason": "Possible relationship with imidacloprid observed at M1",
+      "type": "monitoring"
+    },
+    {
+      "id": "A5",
+      "source": "S5",
+      "priority": "medium",
+      "action": "Further desk research into soil records",
+      "reason": "Possible historical contamination pathway via groundwater",
+      "type": "desk"
+    },
+    {
+      "id": "A6",
+      "source": "S8",
+      "priority": "medium",
+      "action": "Information request on substance use",
+      "reason": "No company data on substance use available",
+      "type": "permit"
+    },
+    {
+      "id": "A7",
+      "source": "S7",
+      "priority": "low",
+      "action": "Coordination with the upstream water manager",
+      "reason": "PFOS also measured upstream",
+      "type": "coordination"
+    }
+  ],
+  "ui": {
+    "brand": "AquaWare · Source Overview",
+    "pill_title": "Source Overview · Lindewetering",
+    "selector_label": "Waterbody",
+    "selector_value": "Lindewetering (fictional)",
+    "selector_note": "In your Source Overview: your waterbody",
+    "chip_fictional": "Fictional demonstration data",
+    "chip_fictional_short": "Fictional",
+    "reset": "Reset",
+    "tab_overview": "Overview",
+    "tab_sources": "Sources",
+    "tab_substances": "Substances",
+    "tab_actions": "Action plan",
+    "filter_all": "All",
+    "filter_category": "Source category",
+    "filter_priority": "Priority",
+    "filters": "Filters",
+    "priority_list_title": "Priority locations",
+    "empty": "No source locations for this combination",
+    "priority_high": "High",
+    "priority_medium": "Medium",
+    "priority_low": "Low",
+    "priority_label": "Investigation priority",
+    "why_priority": "Why this priority",
+    "related_substances": "Possibly related substances",
+    "evidence": "Supporting evidence",
+    "knowledge_gap": "Knowledge gap",
+    "next_step": "Recommended next step",
+    "reason": "Reason",
+    "activity": "Activity",
+    "connection": "Discharge pathway",
+    "category": "Category",
+    "source_card_label": "Source location",
+    "disclaimer": "Investigation priority — not a finding of non-compliance.",
+    "level_possible": "possible relationship (indication)",
+    "level_documented": "documented emission or pathway (permit, registration, measurement)",
+    "level_demonstrated": "demonstrated contribution",
+    "level_possible_short": "possible",
+    "level_documented_short": "documented",
+    "level_demonstrated_short": "demonstrated",
+    "level_symbol_possible": "◌",
+    "level_symbol_documented": "●",
+    "level_symbol_demonstrated": "◆",
+    "route": "Pathway",
+    "view_source": "View source →",
+    "view_on_map": "View on map",
+    "mobile_map": "Map",
+    "mobile_list": "List",
+    "show_evidence": "Show supporting evidence and next step ↓",
+    "action_type_sampling": "Sampling",
+    "action_type_permit": "Permit",
+    "action_type_monitoring": "Monitoring",
+    "action_type_desk": "Desk research",
+    "action_type_coordination": "Coordination",
+    "action_type_label": "Type",
+    "col_priority": "Priority",
+    "col_source": "Potential source",
+    "col_action": "Suggested action",
+    "col_reason": "Reason",
+    "col_type": "Type",
+    "col_name": "Name",
+    "col_category": "Category",
+    "col_activity": "Activity",
+    "col_substances": "Substances",
+    "col_pathway": "Pathway",
+    "matrix_caption": "The substance–source matrix brings together the possible relationships between problem substances and source locations. It shows which locations merit further investigation and where additional data is needed.",
+    "actions_note": "Fictional examples. Which actions an investigation yields depends on the waterbody and the available data.",
+    "legend_source": "Source location",
+    "legend_pathway_documented": "Documented pathway",
+    "legend_pathway_possible": "Possible pathway",
+    "legend_monitoring": "Monitoring point",
+    "legend_priority_high": "High priority",
+    "legend_catchment": "catchment (indicative)",
+    "legend_sewer_catchment": "Sewer catchment of WWTP North",
+    "legend_priority": "Investigation priority",
+    "map_label_waterbody": "Lindewetering",
+    "map_label_wwtp": "WWTP North",
+    "summary_substances": "problem substances",
+    "summary_sources": "potential source locations",
+    "summary_high": "high",
+    "summary_medium": "medium",
+    "summary_priorities": "investigation priorities",
+    "summary_note": "fictional counts",
+    "pathway_via": "Via {name}",
+    "priorities_title": "Investigation priorities",
+    "action_chip_permit": "Permit review",
+    "preview_label": "Example of a Source Overview with fictional demonstration data: map of the waterbody {waterbody} with potential source locations, coloured by investigation priority. Highlighted: {source}, investigation priority {priority}.",
+    "caption_fictional": "Fictional demonstration data. The Source Overview shows potential sources and investigation priorities; confirming a contribution requires further investigation.",
+    "substance_exceedance": "Exceedance at",
+    "substance_select": "Select a substance",
+    "close": "Close",
+    "filter_remove": "Remove filter: {name}",
+    "mobile_view": "View",
+    "guide_start": "See how it works →",
+    "guide_step_1": "Problem substance",
+    "guide_step_2": "Potential sources",
+    "guide_step_3": "Supporting evidence",
+    "guide_step_4": "Investigation priority",
+    "guide_step_5": "Next step",
+    "guide_caption_1": "Problem substance: zinc exceeds the standard at M1 and M2.",
+    "guide_caption_2": "Potential sources: five locations with a possible or documented relationship.",
+    "guide_caption_3": "Supporting evidence: pathway to WWTP North documented, current discharge data missing.",
+    "guide_caption_4": "Investigation priority: high — possible substance relationship and incomplete information.",
+    "guide_caption_5": "Next step: permit review and information request.",
+    "guide_end": "Now explore on your own",
+    "guide_pause": "Pause",
+    "guide_resume": "Resume",
+    "guide_next": "Next",
+    "guide_skip": "Skip",
+    "guide_again": "Again"
+  }
+}

@@ -1,0 +1,8 @@
+# Netlify and Cloudflare Pages read this file: the old addresses forward permanently (301).
+# Every rule is written twice. Netlify skips a rule when a file is at the old address (the page left there,
+# which still forwards on other hosts) unless its status carries a "!"; Cloudflare Pages always forwards and
+# drops a line it cannot read, so the plain line is the one it uses.
+/bronnenscan/  /waterlichaam-bronnenanalyse/  301!
+/bronnenscan/  /waterlichaam-bronnenanalyse/  301
+/en/bronnenscan/  /en/waterbody-source-analysis/  301!
+/en/bronnenscan/  /en/waterbody-source-analysis/  301
