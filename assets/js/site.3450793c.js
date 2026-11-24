@@ -16,7 +16,7 @@ toggle.addEventListener('click',function(){setOpen(!header.classList.contains('i
 document.addEventListener('keydown',function(e){
 if(e.key==='Escape'&&header.classList.contains('is-open')){setOpen(false);toggle.focus();}
 });
-window.matchMedia('(min-width: 68.75em)').addEventListener('change',function(e){if(e.matches)setOpen(false);});
+window.matchMedia('(min-width: 80em)').addEventListener('change',function(e){if(e.matches)setOpen(false);});
 }
 var rootScale=function(){return(parseFloat(getComputedStyle(document.documentElement).fontSize)||16)/16;};
 var fitMock=function(mock){
